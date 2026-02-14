@@ -1,0 +1,12 @@
+{
+    "source_channels": [
+        "@gaoshoukorea"
+    ],
+    "destination_user_id": "@opendoorai",
+    "keywords": [],
+    "settings": {
+        "forward_media": true,
+        "remove_duplicates": true,
+        "log_level": "INFO"
+    }
+}
