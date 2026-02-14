@@ -1,6 +1,9 @@
 {
     "source_channels": [
-        "@lightingmarket"
+        "gaoshoukorea",
+        "lightingmarket",
+        "value_investing",
+        "newsway_kr"
     ],
     "destination_user_id": "@opendoorai",
     "keywords": [],
