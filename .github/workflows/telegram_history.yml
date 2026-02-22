@@ -5,10 +5,15 @@ on:
 
 jobs:
   sync-history:
+    permissions:
+      contents: write  # 체크포인트 파일 업데이트를 위해 쓰기 권한 필요
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -27,3 +32,11 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
         run: python sync_history.py
+
+      - name: Commit and Push Checkpoints
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add last_processed_ids.json
+          git commit -m "chore: update history sync checkpoints [skip ci]" || echo "No changes to commit"
+          git push

@@ -1,14 +1,39 @@
 {
     "source_channels": [
         "gaoshoukorea",
-        "lightingmarket",
-        "value_investing",
-        "newsway_kr"
+        "corevalue",
+        "hanachina",
+        "songjongsik",
+        "jake8lee",
+        "HS_academy",
+        "bumgore",
+        "helpmeonestep",
+        "TNBfolio",
+        "Barbarianglobal",
+        "siglab",
+        "stockgrandmaster",
+        "eqmirae",
+        "KISGregKim",
+        "globaletfi",
+        "darthacking",
+        "bornlupin",
+        "easobi",
+        "free_life59",
+        "insidertracking",
+        "tambangwang",
+        "Macrojunglemicrolens",
+        "cahier_de_market"
     ],
     "destination_user_id": "@opendoorai",
     "keywords": [],
+    "history_settings": {
+        "start_date": "2026-01-02",
+        "end_date": "2026-02-21",
+        "exclude_years": [],
+        "batch_size_per_channel": 100
+    },
     "settings": {
-        "forward_media": true,
+        "forward_media": false,
         "remove_duplicates": true,
         "log_level": "INFO"
     }

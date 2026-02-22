@@ -1,0 +1,269 @@
+sync	Set up job	﻿2026-02-14T15:36:42.5436210Z Current runner version: '2.331.0'
+sync	Set up job	2026-02-14T15:36:42.5463769Z ##[group]Runner Image Provisioner
+sync	Set up job	2026-02-14T15:36:42.5464738Z Hosted Compute Agent
+sync	Set up job	2026-02-14T15:36:42.5465344Z Version: 20260123.484
+sync	Set up job	2026-02-14T15:36:42.5466040Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+sync	Set up job	2026-02-14T15:36:42.5466939Z Build Date: 2026-01-23T19:41:17Z
+sync	Set up job	2026-02-14T15:36:42.5467656Z Worker ID: {3d0dde87-ec56-4456-b209-98b988a3b0c4}
+sync	Set up job	2026-02-14T15:36:42.5468456Z Azure Region: westus3
+sync	Set up job	2026-02-14T15:36:42.5469075Z ##[endgroup]
+sync	Set up job	2026-02-14T15:36:42.5470540Z ##[group]Operating System
+sync	Set up job	2026-02-14T15:36:42.5471288Z Ubuntu
+sync	Set up job	2026-02-14T15:36:42.5471768Z 24.04.3
+sync	Set up job	2026-02-14T15:36:42.5472264Z LTS
+sync	Set up job	2026-02-14T15:36:42.5472890Z ##[endgroup]
+sync	Set up job	2026-02-14T15:36:42.5473440Z ##[group]Runner Image
+sync	Set up job	2026-02-14T15:36:42.5474115Z Image: ubuntu-24.04
+sync	Set up job	2026-02-14T15:36:42.5474703Z Version: 20260209.23.1
+sync	Set up job	2026-02-14T15:36:42.5475739Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260209.23/images/ubuntu/Ubuntu2404-Readme.md
+sync	Set up job	2026-02-14T15:36:42.5477943Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260209.23
+sync	Set up job	2026-02-14T15:36:42.5478890Z ##[endgroup]
+sync	Set up job	2026-02-14T15:36:42.5480187Z ##[group]GITHUB_TOKEN Permissions
+sync	Set up job	2026-02-14T15:36:42.5482175Z Contents: read
+sync	Set up job	2026-02-14T15:36:42.5482971Z Metadata: read
+sync	Set up job	2026-02-14T15:36:42.5483545Z Packages: read
+sync	Set up job	2026-02-14T15:36:42.5484117Z ##[endgroup]
+sync	Set up job	2026-02-14T15:36:42.5486811Z Secret source: Actions
+sync	Set up job	2026-02-14T15:36:42.5487664Z Prepare workflow directory
+sync	Set up job	2026-02-14T15:36:42.5838646Z Prepare all required actions
+sync	Set up job	2026-02-14T15:36:42.5877820Z Getting action download info
+sync	Set up job	2026-02-14T15:36:42.9563639Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+sync	Set up job	2026-02-14T15:36:43.2322635Z Complete job name: sync
+sync	Checkout code	﻿2026-02-14T15:36:43.3048110Z ##[group]Run actions/checkout@v4
+sync	Checkout code	2026-02-14T15:36:43.3048979Z with:
+sync	Checkout code	2026-02-14T15:36:43.3049421Z   repository: aiopendoor/telegram
+sync	Checkout code	2026-02-14T15:36:43.3050122Z   token: ***
+sync	Checkout code	2026-02-14T15:36:43.3050589Z   ssh-strict: true
+sync	Checkout code	2026-02-14T15:36:43.3051140Z   ssh-user: git
+sync	Checkout code	2026-02-14T15:36:43.3051575Z   persist-credentials: true
+sync	Checkout code	2026-02-14T15:36:43.3052050Z   clean: true
+sync	Checkout code	2026-02-14T15:36:43.3052479Z   sparse-checkout-cone-mode: true
+sync	Checkout code	2026-02-14T15:36:43.3052986Z   fetch-depth: 1
+sync	Checkout code	2026-02-14T15:36:43.3053400Z   fetch-tags: false
+sync	Checkout code	2026-02-14T15:36:43.3053831Z   show-progress: true
+sync	Checkout code	2026-02-14T15:36:43.3054267Z   lfs: false
+sync	Checkout code	2026-02-14T15:36:43.3054660Z   submodules: false
+sync	Checkout code	2026-02-14T15:36:43.3055096Z   set-safe-directory: true
+sync	Checkout code	2026-02-14T15:36:43.3055803Z ##[endgroup]
+sync	Checkout code	2026-02-14T15:36:43.4145659Z Syncing repository: aiopendoor/telegram
+sync	Checkout code	2026-02-14T15:36:43.4147861Z ##[group]Getting Git version info
+sync	Checkout code	2026-02-14T15:36:43.4148616Z Working directory is '/home/runner/work/telegram/telegram'
+sync	Checkout code	2026-02-14T15:36:43.4149659Z [command]/usr/bin/git version
+sync	Checkout code	2026-02-14T15:36:43.4155313Z git version 2.52.0
+sync	Checkout code	2026-02-14T15:36:43.4182137Z ##[endgroup]
+sync	Checkout code	2026-02-14T15:36:43.4198955Z Temporarily overriding HOME='/home/runner/work/_temp/7f751887-7dd3-4942-83e5-670047a8046e' before making global git config changes
+sync	Checkout code	2026-02-14T15:36:43.4201414Z Adding repository directory to the temporary git global config as a safe directory
+sync	Checkout code	2026-02-14T15:36:43.4213325Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/telegram/telegram
+sync	Checkout code	2026-02-14T15:36:43.4252988Z Deleting the contents of '/home/runner/work/telegram/telegram'
+sync	Checkout code	2026-02-14T15:36:43.4257089Z ##[group]Initializing the repository
+sync	Checkout code	2026-02-14T15:36:43.4262098Z [command]/usr/bin/git init /home/runner/work/telegram/telegram
+sync	Checkout code	2026-02-14T15:36:43.4378299Z hint: Using 'master' as the name for the initial branch. This default branch name
+sync	Checkout code	2026-02-14T15:36:43.4379668Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+sync	Checkout code	2026-02-14T15:36:43.4380780Z hint: to use in all of your new repositories, which will suppress this warning,
+sync	Checkout code	2026-02-14T15:36:43.4382044Z hint: call:
+sync	Checkout code	2026-02-14T15:36:43.4382540Z hint:
+sync	Checkout code	2026-02-14T15:36:43.4383197Z hint: 	git config --global init.defaultBranch <name>
+sync	Checkout code	2026-02-14T15:36:43.4384656Z hint:
+sync	Checkout code	2026-02-14T15:36:43.4385684Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+sync	Checkout code	2026-02-14T15:36:43.4387683Z hint: 'development'. The just-created branch can be renamed via this command:
+sync	Checkout code	2026-02-14T15:36:43.4389018Z hint:
+sync	Checkout code	2026-02-14T15:36:43.4389763Z hint: 	git branch -m <name>
+sync	Checkout code	2026-02-14T15:36:43.4390579Z hint:
+sync	Checkout code	2026-02-14T15:36:43.4391625Z hint: Disable this message with "git config set advice.defaultBranchName false"
+sync	Checkout code	2026-02-14T15:36:43.4393335Z Initialized empty Git repository in /home/runner/work/telegram/telegram/.git/
+sync	Checkout code	2026-02-14T15:36:43.4396807Z [command]/usr/bin/git remote add origin https://github.com/aiopendoor/telegram
+sync	Checkout code	2026-02-14T15:36:43.4437280Z ##[endgroup]
+sync	Checkout code	2026-02-14T15:36:43.4438597Z ##[group]Disabling automatic garbage collection
+sync	Checkout code	2026-02-14T15:36:43.4442322Z [command]/usr/bin/git config --local gc.auto 0
+sync	Checkout code	2026-02-14T15:36:43.4472558Z ##[endgroup]
+sync	Checkout code	2026-02-14T15:36:43.4473831Z ##[group]Setting up auth
+sync	Checkout code	2026-02-14T15:36:43.4480484Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+sync	Checkout code	2026-02-14T15:36:43.4513358Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+sync	Checkout code	2026-02-14T15:36:43.4893087Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+sync	Checkout code	2026-02-14T15:36:43.4925857Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+sync	Checkout code	2026-02-14T15:36:43.5170278Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+sync	Checkout code	2026-02-14T15:36:43.5208296Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+sync	Checkout code	2026-02-14T15:36:43.5468713Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+sync	Checkout code	2026-02-14T15:36:43.5504206Z ##[endgroup]
+sync	Checkout code	2026-02-14T15:36:43.5505223Z ##[group]Fetching the repository
+sync	Checkout code	2026-02-14T15:36:43.5513041Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8ddd6a294f09ff851e311071460941f5b6a93839:refs/remotes/origin/main
+sync	Checkout code	2026-02-14T15:36:44.1065269Z From https://github.com/aiopendoor/telegram
+sync	Checkout code	2026-02-14T15:36:44.1067005Z  * [new ref]         8ddd6a294f09ff851e311071460941f5b6a93839 -> origin/main
+sync	Checkout code	2026-02-14T15:36:44.1101151Z ##[endgroup]
+sync	Checkout code	2026-02-14T15:36:44.1102618Z ##[group]Determining the checkout info
+sync	Checkout code	2026-02-14T15:36:44.1104371Z ##[endgroup]
+sync	Checkout code	2026-02-14T15:36:44.1109855Z [command]/usr/bin/git sparse-checkout disable
+sync	Checkout code	2026-02-14T15:36:44.1152962Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+sync	Checkout code	2026-02-14T15:36:44.1179098Z ##[group]Checking out the ref
+sync	Checkout code	2026-02-14T15:36:44.1182457Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+sync	Checkout code	2026-02-14T15:36:44.1331153Z Switched to a new branch 'main'
+sync	Checkout code	2026-02-14T15:36:44.1332910Z branch 'main' set up to track 'origin/main'.
+sync	Checkout code	2026-02-14T15:36:44.1341636Z ##[endgroup]
+sync	Checkout code	2026-02-14T15:36:44.1381670Z [command]/usr/bin/git log -1 --format=%H
+sync	Checkout code	2026-02-14T15:36:44.1406221Z 8ddd6a294f09ff851e311071460941f5b6a93839
+sync	Set up Python	﻿2026-02-14T15:36:44.1688407Z ##[warning]Unexpected input(s) 'python-version', valid inputs are ['repository', 'ref', 'token', 'ssh-key', 'ssh-known-hosts', 'ssh-strict', 'ssh-user', 'persist-credentials', 'path', 'clean', 'filter', 'sparse-checkout', 'sparse-checkout-cone-mode', 'fetch-depth', 'fetch-tags', 'show-progress', 'lfs', 'submodules', 'set-safe-directory', 'github-server-url']
+sync	Set up Python	2026-02-14T15:36:44.1705806Z ##[group]Run actions/checkout@v4
+sync	Set up Python	2026-02-14T15:36:44.1706504Z with:
+sync	Set up Python	2026-02-14T15:36:44.1706945Z   python-version: 3.9
+sync	Set up Python	2026-02-14T15:36:44.1707432Z   repository: aiopendoor/telegram
+sync	Set up Python	2026-02-14T15:36:44.1708124Z   token: ***
+sync	Set up Python	2026-02-14T15:36:44.1708552Z   ssh-strict: true
+sync	Set up Python	2026-02-14T15:36:44.1709198Z   ssh-user: git
+sync	Set up Python	2026-02-14T15:36:44.1709647Z   persist-credentials: true
+sync	Set up Python	2026-02-14T15:36:44.1710139Z   clean: true
+sync	Set up Python	2026-02-14T15:36:44.1710600Z   sparse-checkout-cone-mode: true
+sync	Set up Python	2026-02-14T15:36:44.1711128Z   fetch-depth: 1
+sync	Set up Python	2026-02-14T15:36:44.1711570Z   fetch-tags: false
+sync	Set up Python	2026-02-14T15:36:44.1712011Z   show-progress: true
+sync	Set up Python	2026-02-14T15:36:44.1712507Z   lfs: false
+sync	Set up Python	2026-02-14T15:36:44.1712924Z   submodules: false
+sync	Set up Python	2026-02-14T15:36:44.1713400Z   set-safe-directory: true
+sync	Set up Python	2026-02-14T15:36:44.1713893Z ##[endgroup]
+sync	Set up Python	2026-02-14T15:36:44.2654051Z Syncing repository: aiopendoor/telegram
+sync	Set up Python	2026-02-14T15:36:44.2658074Z ##[group]Getting Git version info
+sync	Set up Python	2026-02-14T15:36:44.2659197Z Working directory is '/home/runner/work/telegram/telegram'
+sync	Set up Python	2026-02-14T15:36:44.2701283Z [command]/usr/bin/git version
+sync	Set up Python	2026-02-14T15:36:44.2739621Z git version 2.52.0
+sync	Set up Python	2026-02-14T15:36:44.2765390Z ##[endgroup]
+sync	Set up Python	2026-02-14T15:36:44.2787503Z Temporarily overriding HOME='/home/runner/work/_temp/82e34617-d7cd-44d7-b66f-09dec0a85648' before making global git config changes
+sync	Set up Python	2026-02-14T15:36:44.2789040Z Adding repository directory to the temporary git global config as a safe directory
+sync	Set up Python	2026-02-14T15:36:44.2792467Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/telegram/telegram
+sync	Set up Python	2026-02-14T15:36:44.2831066Z [command]/usr/bin/git config --local --get remote.origin.url
+sync	Set up Python	2026-02-14T15:36:44.2851928Z https://github.com/aiopendoor/telegram
+sync	Set up Python	2026-02-14T15:36:44.2868105Z ##[group]Removing previously created refs, to avoid conflicts
+sync	Set up Python	2026-02-14T15:36:44.2872912Z [command]/usr/bin/git rev-parse --symbolic-full-name --verify --quiet HEAD
+sync	Set up Python	2026-02-14T15:36:44.2895338Z refs/heads/main
+sync	Set up Python	2026-02-14T15:36:44.2906935Z [command]/usr/bin/git checkout --detach
+sync	Set up Python	2026-02-14T15:36:44.2978854Z HEAD is now at 8ddd6a2 Proceed with one channel at a time: @lightingmarket
+sync	Set up Python	2026-02-14T15:36:44.3023992Z [command]/usr/bin/git branch --delete --force main
+sync	Set up Python	2026-02-14T15:36:44.3049551Z Deleted branch main (was 8ddd6a2).
+sync	Set up Python	2026-02-14T15:36:44.3085433Z ##[endgroup]
+sync	Set up Python	2026-02-14T15:36:44.3088579Z [command]/usr/bin/git submodule status
+sync	Set up Python	2026-02-14T15:36:44.3327118Z ##[group]Cleaning the repository
+sync	Set up Python	2026-02-14T15:36:44.3331243Z [command]/usr/bin/git clean -ffdx
+sync	Set up Python	2026-02-14T15:36:44.3370115Z [command]/usr/bin/git reset --hard HEAD
+sync	Set up Python	2026-02-14T15:36:44.3479724Z HEAD is now at 8ddd6a2 Proceed with one channel at a time: @lightingmarket
+sync	Set up Python	2026-02-14T15:36:44.3485249Z ##[endgroup]
+sync	Set up Python	2026-02-14T15:36:44.3486770Z ##[group]Disabling automatic garbage collection
+sync	Set up Python	2026-02-14T15:36:44.3490186Z [command]/usr/bin/git config --local gc.auto 0
+sync	Set up Python	2026-02-14T15:36:44.3517409Z ##[endgroup]
+sync	Set up Python	2026-02-14T15:36:44.3518189Z ##[group]Setting up auth
+sync	Set up Python	2026-02-14T15:36:44.3523278Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+sync	Set up Python	2026-02-14T15:36:44.3554650Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+sync	Set up Python	2026-02-14T15:36:44.3788478Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+sync	Set up Python	2026-02-14T15:36:44.3810495Z http.https://github.com/.extraheader
+sync	Set up Python	2026-02-14T15:36:44.3819018Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+sync	Set up Python	2026-02-14T15:36:44.3849506Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+sync	Set up Python	2026-02-14T15:36:44.4079849Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+sync	Set up Python	2026-02-14T15:36:44.4110237Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+sync	Set up Python	2026-02-14T15:36:44.4342952Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+sync	Set up Python	2026-02-14T15:36:44.4377622Z ##[endgroup]
+sync	Set up Python	2026-02-14T15:36:44.4378780Z ##[group]Fetching the repository
+sync	Set up Python	2026-02-14T15:36:44.4387590Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8ddd6a294f09ff851e311071460941f5b6a93839:refs/remotes/origin/main
+sync	Set up Python	2026-02-14T15:36:44.7707021Z ##[endgroup]
+sync	Set up Python	2026-02-14T15:36:44.7708888Z ##[group]Determining the checkout info
+sync	Set up Python	2026-02-14T15:36:44.7710907Z ##[endgroup]
+sync	Set up Python	2026-02-14T15:36:44.7713626Z [command]/usr/bin/git sparse-checkout disable
+sync	Set up Python	2026-02-14T15:36:44.7793440Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+sync	Set up Python	2026-02-14T15:36:44.7820577Z ##[group]Checking out the ref
+sync	Set up Python	2026-02-14T15:36:44.7825413Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+sync	Set up Python	2026-02-14T15:36:44.7936227Z Switched to a new branch 'main'
+sync	Set up Python	2026-02-14T15:36:44.7938746Z branch 'main' set up to track 'origin/main'.
+sync	Set up Python	2026-02-14T15:36:44.7949051Z ##[endgroup]
+sync	Set up Python	2026-02-14T15:36:44.7991020Z [command]/usr/bin/git log -1 --format=%H
+sync	Set up Python	2026-02-14T15:36:44.8016763Z 8ddd6a294f09ff851e311071460941f5b6a93839
+sync	Install dependencies	﻿2026-02-14T15:36:44.8207636Z ##[group]Run python -m pip install --upgrade pip
+sync	Install dependencies	2026-02-14T15:36:44.8209276Z [36;1mpython -m pip install --upgrade pip[0m
+sync	Install dependencies	2026-02-14T15:36:44.8210727Z [36;1mpip install telethon python-dotenv[0m
+sync	Install dependencies	2026-02-14T15:36:44.8266091Z shell: /usr/bin/bash -e {0}
+sync	Install dependencies	2026-02-14T15:36:44.8267399Z ##[endgroup]
+sync	Install dependencies	2026-02-14T15:36:47.3837921Z Defaulting to user installation because normal site-packages is not writeable
+sync	Install dependencies	2026-02-14T15:36:48.7150224Z Requirement already satisfied: pip in /usr/lib/python3/dist-packages (24.0)
+sync	Install dependencies	2026-02-14T15:36:48.8488084Z Collecting pip
+sync	Install dependencies	2026-02-14T15:36:48.9190004Z   Downloading pip-26.0.1-py3-none-any.whl.metadata (4.7 kB)
+sync	Install dependencies	2026-02-14T15:36:48.9364061Z Downloading pip-26.0.1-py3-none-any.whl (1.8 MB)
+sync	Install dependencies	2026-02-14T15:36:49.0107222Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 25.7 MB/s eta 0:00:00
+sync	Install dependencies	2026-02-14T15:36:49.2777089Z Installing collected packages: pip
+sync	Install dependencies	2026-02-14T15:36:50.0257207Z Successfully installed pip-26.0.1
+sync	Install dependencies	2026-02-14T15:36:50.3093119Z Defaulting to user installation because normal site-packages is not writeable
+sync	Install dependencies	2026-02-14T15:36:50.5433418Z Collecting telethon
+sync	Install dependencies	2026-02-14T15:36:50.6277433Z   Downloading telethon-1.42.0-py3-none-any.whl.metadata (3.9 kB)
+sync	Install dependencies	2026-02-14T15:36:50.6519677Z Collecting python-dotenv
+sync	Install dependencies	2026-02-14T15:36:50.6656115Z   Downloading python_dotenv-1.2.1-py3-none-any.whl.metadata (25 kB)
+sync	Install dependencies	2026-02-14T15:36:50.6934725Z Collecting pyaes (from telethon)
+sync	Install dependencies	2026-02-14T15:36:50.7069399Z   Downloading pyaes-1.6.1.tar.gz (28 kB)
+sync	Install dependencies	2026-02-14T15:36:50.7182775Z   Installing build dependencies: started
+sync	Install dependencies	2026-02-14T15:36:51.6775712Z   Installing build dependencies: finished with status 'done'
+sync	Install dependencies	2026-02-14T15:36:51.6781382Z   Getting requirements to build wheel: started
+sync	Install dependencies	2026-02-14T15:36:51.9822468Z   Getting requirements to build wheel: finished with status 'done'
+sync	Install dependencies	2026-02-14T15:36:51.9831137Z   Preparing metadata (pyproject.toml): started
+sync	Install dependencies	2026-02-14T15:36:52.1463503Z   Preparing metadata (pyproject.toml): finished with status 'done'
+sync	Install dependencies	2026-02-14T15:36:52.1665106Z Collecting rsa (from telethon)
+sync	Install dependencies	2026-02-14T15:36:52.1788907Z   Downloading rsa-4.9.1-py3-none-any.whl.metadata (5.6 kB)
+sync	Install dependencies	2026-02-14T15:36:52.1849819Z Requirement already satisfied: pyasn1>=0.1.3 in /usr/lib/python3/dist-packages (from rsa->telethon) (0.4.8)
+sync	Install dependencies	2026-02-14T15:36:52.1998922Z Downloading telethon-1.42.0-py3-none-any.whl (748 kB)
+sync	Install dependencies	2026-02-14T15:36:52.2474879Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 748.5/748.5 kB 22.6 MB/s  0:00:00
+sync	Install dependencies	2026-02-14T15:36:52.2602679Z Downloading python_dotenv-1.2.1-py3-none-any.whl (21 kB)
+sync	Install dependencies	2026-02-14T15:36:52.2752923Z Downloading rsa-4.9.1-py3-none-any.whl (34 kB)
+sync	Install dependencies	2026-02-14T15:36:52.2843012Z Building wheels for collected packages: pyaes
+sync	Install dependencies	2026-02-14T15:36:52.2851256Z   Building wheel for pyaes (pyproject.toml): started
+sync	Install dependencies	2026-02-14T15:36:52.4793179Z   Building wheel for pyaes (pyproject.toml): finished with status 'done'
+sync	Install dependencies	2026-02-14T15:36:52.4798876Z   Created wheel for pyaes: filename=pyaes-1.6.1-py3-none-any.whl size=26420 sha256=6222eabd56142573167e13d69142d365d319c3d015ba4fbec7301244df448374
+sync	Install dependencies	2026-02-14T15:36:52.4801106Z   Stored in directory: /home/runner/.cache/pip/wheels/d9/43/32/ec313dd557e88e419489b9df40c04dad7b99576bde162496f8
+sync	Install dependencies	2026-02-14T15:36:52.4814983Z Successfully built pyaes
+sync	Install dependencies	2026-02-14T15:36:52.5428289Z Installing collected packages: pyaes, rsa, python-dotenv, telethon
+sync	Install dependencies	2026-02-14T15:36:53.4819672Z 
+sync	Install dependencies	2026-02-14T15:36:53.4830616Z Successfully installed pyaes-1.6.1 python-dotenv-1.2.1 rsa-4.9.1 telethon-1.42.0
+sync	Run Sync Script	﻿2026-02-14T15:36:53.5505784Z ##[group]Run python sync_history.py
+sync	Run Sync Script	2026-02-14T15:36:53.5506118Z [36;1mpython sync_history.py[0m
+sync	Run Sync Script	2026-02-14T15:36:53.5557284Z shell: /usr/bin/bash -e {0}
+sync	Run Sync Script	2026-02-14T15:36:53.5557536Z env:
+sync	Run Sync Script	2026-02-14T15:36:53.5558014Z   TELEGRAM_API_ID: ***
+sync	Run Sync Script	2026-02-14T15:36:53.5558301Z   TELEGRAM_API_HASH: ***
+sync	Run Sync Script	2026-02-14T15:36:53.5558636Z   TELEGRAM_BOT_TOKEN: ***
+sync	Run Sync Script	2026-02-14T15:36:53.5560406Z   TELEGRAM_SESSION_STRING: ***
+sync	Run Sync Script	2026-02-14T15:36:53.5560644Z ##[endgroup]
+sync	Run Sync Script	2026-02-14T15:36:53.9953662Z 2026-02-14 15:36:53,995 - INFO - Connecting to 91.108.56.117:443/TcpFull...
+sync	Run Sync Script	2026-02-14T15:36:54.1735572Z 2026-02-14 15:36:54,173 - INFO - Connection to 91.108.56.117:443/TcpFull complete!
+sync	Run Sync Script	2026-02-14T15:36:55.1364187Z 2026-02-14 15:36:55,136 - INFO - Connecting to 149.154.167.51:443/TcpFull...
+sync	Run Sync Script	2026-02-14T15:36:57.5043616Z 2026-02-14 15:36:57,504 - INFO - Connection to 149.154.167.51:443/TcpFull complete!
+sync	Run Sync Script	2026-02-14T15:36:58.4726103Z 2026-02-14 15:36:58,472 - INFO - Phone migrated to 5
+sync	Run Sync Script	2026-02-14T15:36:58.4727086Z 2026-02-14 15:36:58,472 - INFO - Reconnecting to new data center 5
+sync	Run Sync Script	2026-02-14T15:36:58.6359277Z 2026-02-14 15:36:58,635 - INFO - Disconnecting from 149.154.167.51:443/TcpFull...
+sync	Run Sync Script	2026-02-14T15:36:58.6362184Z 2026-02-14 15:36:58,636 - INFO - Disconnection from 149.154.167.51:443/TcpFull complete!
+sync	Run Sync Script	2026-02-14T15:36:58.6363490Z 2026-02-14 15:36:58,636 - INFO - Connecting to 91.108.56.193:443/TcpFull...
+sync	Run Sync Script	2026-02-14T15:37:00.6006053Z 2026-02-14 15:37:00,600 - INFO - Connection to 91.108.56.193:443/TcpFull complete!
+sync	Run Sync Script	2026-02-14T15:37:01.7134542Z 2026-02-14 15:37:01,713 - INFO - 과거 전체 메시지 수집을 시작합니다. (원본 시간 포함)
+sync	Run Sync Script	2026-02-14T15:37:01.9039192Z 2026-02-14 15:37:01,903 - ERROR - 채널 @lightingmarket 처리 중 오류: Nobody is using this username, or the username is unacceptable. If the latter, it must match r"[a-zA-Z][\w\d]{3,30}[a-zA-Z\d]" (caused by ResolveUsernameRequest)
+sync	Run Sync Script	2026-02-14T15:37:01.9041271Z 2026-02-14 15:37:01,903 - INFO - Disconnecting from 91.108.56.117:443/TcpFull...
+sync	Run Sync Script	2026-02-14T15:37:01.9042217Z 2026-02-14 15:37:01,904 - INFO - Disconnection from 91.108.56.117:443/TcpFull complete!
+sync	Run Sync Script	2026-02-14T15:37:01.9044309Z 2026-02-14 15:37:01,904 - INFO - Disconnecting from 91.108.56.193:443/TcpFull...
+sync	Run Sync Script	2026-02-14T15:37:01.9046673Z 2026-02-14 15:37:01,904 - INFO - Disconnection from 91.108.56.193:443/TcpFull complete!
+sync	Post Set up Python	﻿2026-02-14T15:37:01.9533937Z ##[warning]Unexpected input(s) 'python-version', valid inputs are ['repository', 'ref', 'token', 'ssh-key', 'ssh-known-hosts', 'ssh-strict', 'ssh-user', 'persist-credentials', 'path', 'clean', 'filter', 'sparse-checkout', 'sparse-checkout-cone-mode', 'fetch-depth', 'fetch-tags', 'show-progress', 'lfs', 'submodules', 'set-safe-directory', 'github-server-url']
+sync	Post Set up Python	2026-02-14T15:37:01.9540009Z Post job cleanup.
+sync	Post Set up Python	2026-02-14T15:37:02.0479630Z [command]/usr/bin/git version
+sync	Post Set up Python	2026-02-14T15:37:02.0516117Z git version 2.52.0
+sync	Post Set up Python	2026-02-14T15:37:02.0560641Z Temporarily overriding HOME='/home/runner/work/_temp/3bca31c4-7246-41d9-923d-f5a3e43c4c56' before making global git config changes
+sync	Post Set up Python	2026-02-14T15:37:02.0562007Z Adding repository directory to the temporary git global config as a safe directory
+sync	Post Set up Python	2026-02-14T15:37:02.0567174Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/telegram/telegram
+sync	Post Set up Python	2026-02-14T15:37:02.0604672Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+sync	Post Set up Python	2026-02-14T15:37:02.0638765Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+sync	Post Set up Python	2026-02-14T15:37:02.0873206Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+sync	Post Set up Python	2026-02-14T15:37:02.0894167Z http.https://github.com/.extraheader
+sync	Post Set up Python	2026-02-14T15:37:02.0906242Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+sync	Post Set up Python	2026-02-14T15:37:02.0938932Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+sync	Post Set up Python	2026-02-14T15:37:02.1169316Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+sync	Post Set up Python	2026-02-14T15:37:02.1200945Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+sync	Post Checkout code	﻿2026-02-14T15:37:02.1574666Z Post job cleanup.
+sync	Post Checkout code	2026-02-14T15:37:02.2531478Z [command]/usr/bin/git version
+sync	Post Checkout code	2026-02-14T15:37:02.2568300Z git version 2.52.0
+sync	Post Checkout code	2026-02-14T15:37:02.2611894Z Temporarily overriding HOME='/home/runner/work/_temp/08b28310-be83-49eb-a3ab-be9885d6d145' before making global git config changes
+sync	Post Checkout code	2026-02-14T15:37:02.2613271Z Adding repository directory to the temporary git global config as a safe directory
+sync	Post Checkout code	2026-02-14T15:37:02.2618679Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/telegram/telegram
+sync	Post Checkout code	2026-02-14T15:37:02.2655220Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+sync	Post Checkout code	2026-02-14T15:37:02.2690132Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+sync	Post Checkout code	2026-02-14T15:37:02.2929413Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+sync	Post Checkout code	2026-02-14T15:37:02.2961767Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+sync	Post Checkout code	2026-02-14T15:37:02.3210545Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+sync	Post Checkout code	2026-02-14T15:37:02.3246811Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+sync	Complete job	﻿2026-02-14T15:37:02.3624178Z Cleaning up orphan processes

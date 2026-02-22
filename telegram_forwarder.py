@@ -4,7 +4,7 @@ import asyncio
 import logging
 from dotenv import load_dotenv
 from telethon import TelegramClient, events
-from telethon.tl.types import User
+from telethon.sessions import StringSession
 
 # .env 파일 로드
 load_dotenv()
@@ -13,6 +13,7 @@ load_dotenv()
 API_ID = int(os.getenv("TELEGRAM_API_ID"))
 API_HASH = os.getenv("TELEGRAM_API_HASH")
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+SESSION_STRING = os.getenv("TELEGRAM_SESSION_STRING")
 
 # 로깅 설정
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -35,7 +36,10 @@ SOURCE_CHANNELS = config.get("source_channels", [])
 KEYWORDS = config.get("keywords", [])
 
 # Telegram Client 설정 (User 계정용)
-user_client = TelegramClient('user_session', API_ID, API_HASH)
+if SESSION_STRING:
+    user_client = TelegramClient(StringSession(SESSION_STRING), API_ID, API_HASH)
+else:
+    user_client = TelegramClient('user_session', API_ID, API_HASH)
 
 # Telegram Client 설정 (Bot용 - 메시지 전송 전담)
 bot_client = TelegramClient('bot_session', API_ID, API_HASH)
