@@ -1,16 +1,16 @@
 ---
 name: phase-3-mockup
 description: |
-  Skill for creating mockups with UI/UX trends without a designer.
-  Designs HTML/CSS/JS prototypes that can be converted to Next.js components.
+  디자이너 없이 UI/UX 트렌드를 반영한 목업을 제작하는 스킬입니다.
+  나중에 Next.js 컴포넌트로 변환하기 쉬운 HTML/CSS/JS 프로토타입을 설계합니다.
 
-  Use proactively when user wants to validate UI/UX before implementation.
+  구현 전 UI/UX 검증이 필요할 때 선제적으로 사용하십시오.
 
-  Triggers: mockup, prototype, wireframe, UI design, 목업, モックアップ, 原型,
+  Triggers: mockup, prototype, wireframe, UI design, 목업, 모크업, 원형, 原型,
   maqueta, prototipo, diseño UI, maquette, prototype, conception UI,
   Mockup, Prototyp, UI-Design, mockup, prototipo, design UI
 
-  Do NOT use for: production code, API development, or existing component modifications.
+  Do NOT use for: 프로덕션 코드, API 개발 또는 기존 컴포넌트 수정 작업에는 사용하지 마십시오.
 agent: bkit:pipeline-guide
 allowed-tools:
   - Read
@@ -26,314 +26,97 @@ pdca-phase: design
 task-template: "[Phase-3] {feature}"
 ---
 
-# Phase 3: Mockup Development
+# Phase 3: 목업 개발 (Mockup Development)
 
-> Create trendy UI without a designer + Consider Next.js componentization
+> 디자이너 없이 트렌디한 UI 제작 + Next.js 컴포넌트화 고려
 
-## Purpose
+## 프로젝트 목적
 
-Quickly validate ideas before actual implementation. **Even without a designer**, research UI/UX trends to create high-quality prototypes, designed for easy conversion to Next.js components later.
+실제 구현에 들어가기 전 아이디어를 빠르게 검증합니다. **디자이너가 없더라도** UI/UX 트렌드를 조사하여 고품질의 프로토타입을 만들고, 나중에 Next.js 컴포넌트로 전환하기 쉬운 구조로 설계합니다.
 
-## What to Do in This Phase
+## 이 단계에서 할 일
 
-1. **Screen Mockups**: Implement UI with HTML/CSS
-2. **Interactions**: Implement behavior with basic JavaScript
-3. **Data Simulation**: Simulate API responses with JSON files
-4. **Feature Validation**: Test user flows
+1. **화면 목업**: HTML/CSS를 이용한 UI 구현
+2. **인터랙션**: 기본적인 JavaScript를 이용한 동작 구현
+3. **데이터 시뮬레이션**: JSON 파일을 이용한 API 응답 시뮬레이션
+4. **기능 검증**: 사용자 흐름(Flow) 테스트
 
-## Deliverables
+## 결과물 (Deliverables)
 
 ```
 mockup/
-├── pages/          # HTML pages
-│   ├── index.html
-│   ├── login.html
-│   └── ...
-├── styles/         # CSS
-│   └── main.css
-├── scripts/        # JavaScript
-│   └── app.js
-└── data/           # JSON mock data
-    ├── users.json
-    └── products.json
-
-docs/02-design/
-└── mockup-spec.md  # Mockup specification
-```
-
-## PDCA Application
-
-- **Plan**: What screens/features to mock up
-- **Design**: Screen structure, interaction design
-- **Do**: Implement HTML/CSS/JS
-- **Check**: Verify feature behavior
-- **Act**: Apply feedback and proceed to Phase 4
-
-## Level-wise Application
-
-| Level | Application Method |
-|-------|-------------------|
-| Starter | This stage may be the final deliverable |
-| Dynamic | For validation before next stages |
-| Enterprise | For quick PoC |
-
-## Core Principles
-
-```
-"Working prototype over perfect code"
-
-- Pure HTML/CSS/JS without frameworks
-- JSON files instead of APIs for data simulation
-- Fast feedback loops
-- Structure considering Next.js componentization
+├── pages/          # HTML 페이지
+├── styles/         # CSS 스타일
+├── scripts/        # JavaScript 로직
+└── data/           # JSON 가상 데이터
 ```
 
 ---
 
-## UI/UX Trend Research Methods
+## UI/UX 트렌드 조사 방법
 
-### Creating Trendy UI Without a Designer
+### 디자이너 없이 트렌디한 UI 만들기
 
-#### 1. Trend Research Sources
+#### 1. 트렌드 조사 사이트
+- **Dribbble**: 디자인 트렌드 및 컬러 팔레트 참고 (dribbble.com)
+- **Awwwards**: 수상작들을 통한 최신 웹 트렌드 파악 (awwwards.com)
+- **Godly**: 랜딩 페이지 레퍼런스 (godly.website)
 
-| Source | Purpose | URL |
-|--------|---------|-----|
-| **Dribbble** | UI design trends, color palettes | dribbble.com |
-| **Behance** | Real project case studies | behance.net |
-| **Awwwards** | Latest web trends from award winners | awwwards.com |
-| **Mobbin** | Mobile app UI patterns | mobbin.com |
-| **Godly** | Landing page references | godly.website |
-| **Land-book** | Landing page gallery | land-book.com |
-
-#### 2. 2025-2026 UI/UX Trends
-
-```
-🎨 Visual Trends
-├── Bento Grid Layout
-├── Glassmorphism
-├── Gradient Mesh
-├── 3D Elements (minimal 3D elements)
-└── Micro-interactions
-
-📱 UX Trends
-├── Dark Mode First
-├── Skeleton Loading
-├── Progressive Disclosure
-├── Thumb-friendly Mobile Design
-└── Accessibility (WCAG 2.1)
-
-🔤 Typography
-├── Variable Fonts
-├── Large Hero Text
-└── Mixed Font Weights
-```
-
-#### 3. Quick UI Implementation Tools
-
-| Tool | Purpose |
-|------|---------|
-| **v0.dev** | AI-based UI generation (shadcn/ui compatible) |
-| **Tailwind UI** | High-quality component templates |
-| **Heroicons** | Icons |
-| **Lucide** | Icons (React compatible) |
-| **Coolors** | Color palette generation |
-| **Realtime Colors** | Real-time color preview |
-
-#### 4. Pre-Mockup Checklist
-
-```markdown
-## UI Research Checklist
-
-- [ ] Analyzed 3+ similar services
-- [ ] Decided color palette (Primary, Secondary, Accent)
-- [ ] Selected typography (Heading, Body)
-- [ ] Chose layout pattern (Grid, Bento, etc.)
-- [ ] Collected reference design screenshots
-```
+#### 2. 2025-2026 UI/UX 트렌드 키워드
+- **Bento Grid**: 정보를 격자 형태로 깔끔하게 배치
+- **Glassmorphism**: 투명한 유리 느낌의 레이어
+- **Micro-interactions**: 사용자 작업에 반응하는 미세한 애니메이션
+- **Dark Mode First**: 어두운 테마를 기본으로 고려
 
 ---
 
-## Design for Next.js Componentization
+## Next.js 컴포넌트화를 고려한 설계
 
-### Mockup → Component Transition Strategy
+### 목업 → 컴포넌트 전환 전략
 
-Considering **component separation** from the mockup stage makes Next.js transition easier.
+목업 단계부터 **컴포넌트 단위로 분리**하여 설계하면 Next.js 전환이 훨씬 쉽습니다.
 
-#### 1. Design HTML Structure in Component Units
-
+#### 1. 컴포넌트 단위의 HTML 구조 설계
 ```html
-<!-- ❌ Bad: Monolithic HTML -->
-<div class="page">
-  <header>...</header>
-  <main>
-    <div class="hero">...</div>
-    <div class="features">...</div>
-  </main>
-  <footer>...</footer>
-</div>
-
-<!-- ✅ Good: Separated by component units -->
-<!-- components/Header.html -->
+<!-- ✅ 좋음: 컴포넌트 단위로 주석이나 data-component 속성 사용 -->
+<!-- Header 컴포넌트 -->
 <header data-component="Header">
-  <nav data-component="Navigation">...</nav>
+  <nav>...</nav>
 </header>
 
-<!-- components/Hero.html -->
+<!-- Hero 컴포넌트 -->
 <section data-component="Hero">
-  <h1 data-slot="title">...</h1>
-  <p data-slot="description">...</p>
-  <button data-component="Button" data-variant="primary">...</button>
+  <h1>...</h1>
 </section>
 ```
 
-#### 2. Separate CSS by Component
+#### 2. 컴포넌트별 CSS 분리
+- `styles/components/button.css`, `card.css` 처럼 파일을 쪼개어 관리합니다.
 
-```
-mockup/
-├── styles/
-│   ├── base/
-│   │   ├── reset.css
-│   │   └── variables.css      # CSS variables (design tokens)
-│   ├── components/
-│   │   ├── button.css
-│   │   ├── card.css
-│   │   ├── header.css
-│   │   └── hero.css
-│   └── pages/
-│       └── home.css
-```
-
-#### 3. Create Component Mapping Document
-
-```markdown
-## Component Mapping (mockup → Next.js)
-
-| Mockup File | Next.js Component | Props |
-|-------------|------------------|-------|
-| `components/button.html` | `components/ui/Button.tsx` | variant, size, disabled |
-| `components/card.html` | `components/ui/Card.tsx` | title, description, image |
-| `components/header.html` | `components/layout/Header.tsx` | user, navigation |
-```
-
-#### 4. Design Data Structure as Props
-
-```javascript
-// mockup/data/hero.json
-{
-  "title": "Innovative Service",
-  "description": "We provide better experiences",
-  "cta": {
-    "label": "Get Started",
-    "href": "/signup"
-  },
-  "image": "/hero-image.png"
-}
-
-// → When transitioning to Next.js
-// components/Hero.tsx
-interface HeroProps {
-  title: string;
-  description: string;
-  cta: {
-    label: string;
-    href: string;
-  };
-  image: string;
-}
-```
-
-### Next.js Transition Example
-
-**Mockup (HTML)**:
-```html
-<!-- mockup/components/feature-card.html -->
-<div class="feature-card" data-component="FeatureCard">
-  <div class="feature-card__icon">🚀</div>
-  <h3 class="feature-card__title">Fast Speed</h3>
-  <p class="feature-card__description">We provide optimized performance.</p>
-</div>
-```
-
-**Next.js Component**:
-```tsx
-// components/FeatureCard.tsx
-interface FeatureCardProps {
-  icon: string;
-  title: string;
-  description: string;
-}
-
-export function FeatureCard({ icon, title, description }: FeatureCardProps) {
-  return (
-    <div className="feature-card">
-      <div className="feature-card__icon">{icon}</div>
-      <h3 className="feature-card__title">{title}</h3>
-      <p className="feature-card__description">{description}</p>
-    </div>
-  );
-}
-```
+#### 3. Props를 고려한 데이터 구조 설계
+- JSON 가상 데이터를 만들 때, 나중에 React 컴포넌트의 Props로 들어갈 구조를 미리 생각합니다.
 
 ---
 
-## JSON Data Simulation Example
-
-```javascript
-// scripts/app.js
-async function loadProducts() {
-  const response = await fetch('./data/products.json');
-  const products = await response.json();
-  renderProducts(products);
-}
-```
-
-### JSON Structure → Use as API Schema
+## 데이터 시뮬레이션 예시
 
 ```json
 // mockup/data/products.json
-// This structure becomes the basis for Phase 4 API design
+// 이 구조가 Phase 4 API 설계의 기초가 됩니다.
 {
-  "data": [
+  "products": [
     {
       "id": 1,
-      "name": "Product Name",
+      "name": "상품명",
       "price": 10000,
-      "image": "/products/1.jpg"
+      "image": "/images/p1.jpg"
     }
-  ],
-  "pagination": {
-    "page": 1,
-    "limit": 10,
-    "total": 50
-  }
+  ]
 }
 ```
 
 ---
 
-## Deliverables Checklist
+## 다음 단계
 
-- [ ] **UI Research**
-  - [ ] Collected reference designs (minimum 3)
-  - [ ] Decided color palette
-  - [ ] Selected fonts
-
-- [ ] **Mockup Implementation**
-  - [ ] HTML separated by component units
-  - [ ] Design tokens defined with CSS variables
-  - [ ] Data simulated with JSON
-
-- [ ] **Next.js Transition Preparation**
-  - [ ] Component mapping document created
-  - [ ] Props interfaces defined
-  - [ ] Verified reusable structure
-
----
-
-## Template
-
-See `templates/pipeline/phase-3-mockup.template.md`
-
-## Next Phase
-
-Phase 4: API Design/Implementation → Mockup is validated, now implement actual backend
+Phase 4: API 설계 및 구현 → 목업 검증이 끝났으니, 이제 실제 데이터를 다룰 백엔드를 구축합니다.

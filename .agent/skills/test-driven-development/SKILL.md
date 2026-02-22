@@ -1,371 +1,78 @@
 ---
 name: test-driven-development
-description: Use when implementing any feature or bugfix, before writing implementation code
+description: 기능 구현이나 버그 수정을 시작하기 전, 실제 코드를 작성하기 전에 사용하는 스킬입니다.
 ---
 
-# Test-Driven Development (TDD)
+# 테스트 주도 개발 (Test-Driven Development, TDD)
 
-## Overview
+## 개요
 
-Write the test first. Watch it fail. Write minimal code to pass.
+테스트를 먼저 작성하십시오. 실패하는 것을 확인하십시오. 테스트를 통과할 최소한의 코드만 작성하십시오.
 
-**Core principle:** If you didn't watch the test fail, you don't know if it tests the right thing.
+**핵심 원칙:** 테스트가 실패하는 것을 보지 못했다면, 당신은 무엇을 테스트하고 있는지 알 수 없습니다.
 
-**Violating the letter of the rules is violating the spirit of the rules.**
+---
 
-## When to Use
-
-**Always:**
-- New features
-- Bug fixes
-- Refactoring
-- Behavior changes
-
-**Exceptions (ask your human partner):**
-- Throwaway prototypes
-- Generated code
-- Configuration files
-
-Thinking "skip TDD just this once"? Stop. That's rationalization.
-
-## The Iron Law
+## 철칙 (The Iron Law)
 
 ```
-NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
+실패하는 테스트 없이는 프로덕션 코드를 작성하지 마십시오.
 ```
 
-Write code before the test? Delete it. Start over.
+코드를 먼저 썼다면? 삭제하십시오. 그리고 다시 시작하십시오.
+- 참고용으로 남겨두지 마십시오.
+- 그대로 두고 테스트를 짜지 마십시오.
+- 삭제는 진짜 삭제를 의미합니다.
 
-**No exceptions:**
-- Don't keep it as "reference"
-- Don't "adapt" it while writing tests
-- Don't look at it
-- Delete means delete
+## Red-Green-Refactor 사이클
 
-Implement fresh from tests. Period.
+1. **RED (실패하는 테스트 작성)**: 기대하는 동작을 보여주는 최소한의 테스트를 작성합니다.
+   - **반드시 실패를 확인하십시오.** typos가 아닌 기능 부재로 인한 실패여야 합니다.
+2. **GREEN (최소한의 코드 작성)**: 테스트를 통과하기 위한 가장 단순한 코드를 작성합니다.
+   - 오버엔지니어링 하지 마십시오. 딱 통과할 만큼만 씁니다.
+3. **REFACTOR (정리 및 개선)**: 테스트가 통과된 상태에서 코드의 중복을 제거하고 이름을 개선합니다.
+   - 새로운 기능을 추가해서는 안 됩니다.
 
-## Red-Green-Refactor
+---
 
-```dot
-digraph tdd_cycle {
-    rankdir=LR;
-    red [label="RED\nWrite failing test", shape=box, style=filled, fillcolor="#ffcccc"];
-    verify_red [label="Verify fails\ncorrectly", shape=diamond];
-    green [label="GREEN\nMinimal code", shape=box, style=filled, fillcolor="#ccffcc"];
-    verify_green [label="Verify passes\nAll green", shape=diamond];
-    refactor [label="REFACTOR\nClean up", shape=box, style=filled, fillcolor="#ccccff"];
-    next [label="Next", shape=ellipse];
+## TDD를 하는 이유
 
-    red -> verify_red;
-    verify_red -> green [label="yes"];
-    verify_red -> red [label="wrong\nfailure"];
-    green -> verify_green;
-    verify_green -> refactor [label="yes"];
-    verify_green -> green [label="no"];
-    refactor -> verify_green [label="stay\ngreen"];
-    verify_green -> next;
-    next -> red;
-}
-```
+### "나중에 테스트를 짜서 확인하면 안 되나요?"
+코드 작성 후 짜는 테스트는 즉시 통과합니다. 이는 다음을 증명하지 못합니다:
+- 엉뚱한 것을 테스트하고 있을 수 있습니다.
+- 구현에 맞춰 테스트를 짠 것일 수 있습니다. (요구사항이 아닌)
+- 당신이 버그를 잡았다는 증거가 없습니다.
 
-### RED - Write Failing Test
+### "수동으로 이미 다 확인해 봤는데요?"
+수동 테스트는 일회성입니다.
+- 무엇을 테스트했는지 기록이 남지 않습니다.
+- 코드가 바뀔 때마다 다시 확인해야 합니다.
+- 압박감이 있을 때 엣지 케이스를 놓치기 쉽습니다.
 
-Write one minimal test showing what should happen.
+---
 
-<Good>
-```typescript
-test('retries failed operations 3 times', async () => {
-  let attempts = 0;
-  const operation = () => {
-    attempts++;
-    if (attempts < 3) throw new Error('fail');
-    return 'success';
-  };
+## 좋은 테스트의 요약
 
-  const result = await retryOperation(operation);
+| 품질 | 좋은 예 | 나쁜 예 |
+|---------|---------|---------|
+| **최소 단위** | 한 가지 일만 테스트함 | 여러 기능을 한 번에 테스트함 |
+| **명확성** | 이름이 동작을 설명함 | `test1`, `check_api` 등 모호한 이름 |
+| **의도 표현** | 원하는 API 사용법을 보여줌 | 구현 상세에 너무 집착함 |
 
-  expect(result).toBe('success');
-  expect(attempts).toBe(3);
-});
-```
-Clear name, tests real behavior, one thing
-</Good>
+## 자체 점검 체크리스트
 
-<Bad>
-```typescript
-test('retry works', async () => {
-  const mock = jest.fn()
-    .mockRejectedValueOnce(new Error())
-    .mockRejectedValueOnce(new Error())
-    .mockResolvedValueOnce('success');
-  await retryOperation(mock);
-  expect(mock).toHaveBeenCalledTimes(3);
-});
-```
-Vague name, tests mock not code
-</Bad>
+- [ ] 모든 새로운 함수/메서드에 테스트가 있는가?
+- [ ] 구현 전 실패하는 것을 직접 보았는가?
+- [ ] 테스트가 예상한 이유로 실패했는가?
+- [ ] 테스트를 통과하기 위한 최소한의 코드만 작성했는가?
+- [ ] 모든 테스트가 통과하며 경고나 에러가 없는가?
+- [ ] 엣지 케이스와 에러 상황이 포함되었는가?
 
-**Requirements:**
-- One behavior
-- Clear name
-- Real code (no mocks unless unavoidable)
+---
 
-### Verify RED - Watch It Fail
-
-**MANDATORY. Never skip.**
-
-```bash
-npm test path/to/test.test.ts
-```
-
-Confirm:
-- Test fails (not errors)
-- Failure message is expected
-- Fails because feature missing (not typos)
-
-**Test passes?** You're testing existing behavior. Fix test.
-
-**Test errors?** Fix error, re-run until it fails correctly.
-
-### GREEN - Minimal Code
-
-Write simplest code to pass the test.
-
-<Good>
-```typescript
-async function retryOperation<T>(fn: () => Promise<T>): Promise<T> {
-  for (let i = 0; i < 3; i++) {
-    try {
-      return await fn();
-    } catch (e) {
-      if (i === 2) throw e;
-    }
-  }
-  throw new Error('unreachable');
-}
-```
-Just enough to pass
-</Good>
-
-<Bad>
-```typescript
-async function retryOperation<T>(
-  fn: () => Promise<T>,
-  options?: {
-    maxRetries?: number;
-    backoff?: 'linear' | 'exponential';
-    onRetry?: (attempt: number) => void;
-  }
-): Promise<T> {
-  // YAGNI
-}
-```
-Over-engineered
-</Bad>
-
-Don't add features, refactor other code, or "improve" beyond the test.
-
-### Verify GREEN - Watch It Pass
-
-**MANDATORY.**
-
-```bash
-npm test path/to/test.test.ts
-```
-
-Confirm:
-- Test passes
-- Other tests still pass
-- Output pristine (no errors, warnings)
-
-**Test fails?** Fix code, not test.
-
-**Other tests fail?** Fix now.
-
-### REFACTOR - Clean Up
-
-After green only:
-- Remove duplication
-- Improve names
-- Extract helpers
-
-Keep tests green. Don't add behavior.
-
-### Repeat
-
-Next failing test for next feature.
-
-## Good Tests
-
-| Quality | Good | Bad |
-|---------|------|-----|
-| **Minimal** | One thing. "and" in name? Split it. | `test('validates email and domain and whitespace')` |
-| **Clear** | Name describes behavior | `test('test1')` |
-| **Shows intent** | Demonstrates desired API | Obscures what code should do |
-
-## Why Order Matters
-
-**"I'll write tests after to verify it works"**
-
-Tests written after code pass immediately. Passing immediately proves nothing:
-- Might test wrong thing
-- Might test implementation, not behavior
-- Might miss edge cases you forgot
-- You never saw it catch the bug
-
-Test-first forces you to see the test fail, proving it actually tests something.
-
-**"I already manually tested all the edge cases"**
-
-Manual testing is ad-hoc. You think you tested everything but:
-- No record of what you tested
-- Can't re-run when code changes
-- Easy to forget cases under pressure
-- "It worked when I tried it" ≠ comprehensive
-
-Automated tests are systematic. They run the same way every time.
-
-**"Deleting X hours of work is wasteful"**
-
-Sunk cost fallacy. The time is already gone. Your choice now:
-- Delete and rewrite with TDD (X more hours, high confidence)
-- Keep it and add tests after (30 min, low confidence, likely bugs)
-
-The "waste" is keeping code you can't trust. Working code without real tests is technical debt.
-
-**"TDD is dogmatic, being pragmatic means adapting"**
-
-TDD IS pragmatic:
-- Finds bugs before commit (faster than debugging after)
-- Prevents regressions (tests catch breaks immediately)
-- Documents behavior (tests show how to use code)
-- Enables refactoring (change freely, tests catch breaks)
-
-"Pragmatic" shortcuts = debugging in production = slower.
-
-**"Tests after achieve the same goals - it's spirit not ritual"**
-
-No. Tests-after answer "What does this do?" Tests-first answer "What should this do?"
-
-Tests-after are biased by your implementation. You test what you built, not what's required. You verify remembered edge cases, not discovered ones.
-
-Tests-first force edge case discovery before implementing. Tests-after verify you remembered everything (you didn't).
-
-30 minutes of tests after ≠ TDD. You get coverage, lose proof tests work.
-
-## Common Rationalizations
-
-| Excuse | Reality |
-|--------|---------|
-| "Too simple to test" | Simple code breaks. Test takes 30 seconds. |
-| "I'll test after" | Tests passing immediately prove nothing. |
-| "Tests after achieve same goals" | Tests-after = "what does this do?" Tests-first = "what should this do?" |
-| "Already manually tested" | Ad-hoc ≠ systematic. No record, can't re-run. |
-| "Deleting X hours is wasteful" | Sunk cost fallacy. Keeping unverified code is technical debt. |
-| "Keep as reference, write tests first" | You'll adapt it. That's testing after. Delete means delete. |
-| "Need to explore first" | Fine. Throw away exploration, start with TDD. |
-| "Test hard = design unclear" | Listen to test. Hard to test = hard to use. |
-| "TDD will slow me down" | TDD faster than debugging. Pragmatic = test-first. |
-| "Manual test faster" | Manual doesn't prove edge cases. You'll re-test every change. |
-| "Existing code has no tests" | You're improving it. Add tests for existing code. |
-
-## Red Flags - STOP and Start Over
-
-- Code before test
-- Test after implementation
-- Test passes immediately
-- Can't explain why test failed
-- Tests added "later"
-- Rationalizing "just this once"
-- "I already manually tested it"
-- "Tests after achieve the same purpose"
-- "It's about spirit not ritual"
-- "Keep as reference" or "adapt existing code"
-- "Already spent X hours, deleting is wasteful"
-- "TDD is dogmatic, I'm being pragmatic"
-- "This is different because..."
-
-**All of these mean: Delete code. Start over with TDD.**
-
-## Example: Bug Fix
-
-**Bug:** Empty email accepted
-
-**RED**
-```typescript
-test('rejects empty email', async () => {
-  const result = await submitForm({ email: '' });
-  expect(result.error).toBe('Email required');
-});
-```
-
-**Verify RED**
-```bash
-$ npm test
-FAIL: expected 'Email required', got undefined
-```
-
-**GREEN**
-```typescript
-function submitForm(data: FormData) {
-  if (!data.email?.trim()) {
-    return { error: 'Email required' };
-  }
-  // ...
-}
-```
-
-**Verify GREEN**
-```bash
-$ npm test
-PASS
-```
-
-**REFACTOR**
-Extract validation for multiple fields if needed.
-
-## Verification Checklist
-
-Before marking work complete:
-
-- [ ] Every new function/method has a test
-- [ ] Watched each test fail before implementing
-- [ ] Each test failed for expected reason (feature missing, not typo)
-- [ ] Wrote minimal code to pass each test
-- [ ] All tests pass
-- [ ] Output pristine (no errors, warnings)
-- [ ] Tests use real code (mocks only if unavoidable)
-- [ ] Edge cases and errors covered
-
-Can't check all boxes? You skipped TDD. Start over.
-
-## When Stuck
-
-| Problem | Solution |
-|---------|----------|
-| Don't know how to test | Write wished-for API. Write assertion first. Ask your human partner. |
-| Test too complicated | Design too complicated. Simplify interface. |
-| Must mock everything | Code too coupled. Use dependency injection. |
-| Test setup huge | Extract helpers. Still complex? Simplify design. |
-
-## Debugging Integration
-
-Bug found? Write failing test reproducing it. Follow TDD cycle. Test proves fix and prevents regression.
-
-Never fix bugs without a test.
-
-## Testing Anti-Patterns
-
-When adding mocks or test utilities, read @testing-anti-patterns.md to avoid common pitfalls:
-- Testing mock behavior instead of real behavior
-- Adding test-only methods to production classes
-- Mocking without understanding dependencies
-
-## Final Rule
+## 마지막 규칙
 
 ```
-Production code → test exists and failed first
-Otherwise → not TDD
+프로덕션 코드 → 테스트가 존재하고 먼저 실패했어야 함
+그렇지 않다면 → TDD가 아님
 ```
-
-No exceptions without your human partner's permission.

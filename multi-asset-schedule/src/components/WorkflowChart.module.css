@@ -1,0 +1,205 @@
+.container {
+    margin-bottom: 1.5rem;
+    margin-top: 0.75rem;
+}
+
+.projectName {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.flowChart {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 0.5rem;
+    /* 수직 간격 0.75rem, 수평 간격 0.5rem */
+    padding: 0.75rem 0.5rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.stepWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.step {
+    min-width: 130px;
+    /* 래핑을 위해 약간 축소 */
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    border: 2px solid;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.step:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.stepHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.stepNumber {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: var(--text-xs);
+    font-weight: var(--font-bold);
+}
+
+.stepStatus {
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.stepName {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.stepDeadline {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.deadlineInput {
+    display: inline-block;
+    min-width: 40px;
+    border-bottom: 1px dashed var(--color-gray-300);
+}
+
+/* Status colors */
+.activeStep {
+    border: 2px solid var(--color-primary);
+    background-color: rgba(59, 130, 246, 0.05);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), var(--shadow-sm);
+}
+
+.activeStep .stepName {
+    color: var(--color-primary);
+    font-weight: var(--font-bold);
+}
+
+.inactiveStep {
+    border: 1px solid var(--color-gray-200);
+    opacity: 0.8;
+}
+
+.inactiveStep .stepName {
+    color: var(--text-secondary);
+}
+
+
+.completed {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+    color: #1f2937;
+}
+
+.completed .stepName {
+    color: var(--text-primary);
+}
+
+.inProgress {
+    background-color: #e0f2fe;
+    border-color: #bae6fd;
+    color: #0369a1;
+}
+
+.inProgress .stepName {
+    color: var(--text-primary);
+}
+
+.blocked {
+    background-color: #fee2e2;
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.blocked .stepName {
+    color: var(--text-primary);
+}
+
+.notStarted {
+    background-color: #fce7f3;
+    border-color: #fbcfe8;
+    color: #be185d;
+}
+
+.notStarted .stepName {
+    color: var(--text-primary);
+}
+
+.arrow {
+    font-size: var(--text-2xl);
+    color: var(--color-gray-400);
+    font-weight: var(--font-bold);
+}
+
+
+@media (max-width: 640px) {
+    .flowChart {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stepWrapper {
+        flex-direction: column;
+    }
+
+    .arrow {
+        transform: rotate(90deg);
+    }
+
+    .step {
+        min-width: auto;
+        width: 100%;
+    }
+}
+
+.statusSelect {
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.2rem center;
+    background-size: 1em;
+    padding-right: 1.5rem;
+}
+
+.statusSelect:hover {
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(0, 0, 0, 0.2);
+}

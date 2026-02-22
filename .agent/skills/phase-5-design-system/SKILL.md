@@ -1,10 +1,10 @@
 ---
 name: phase-5-design-system
 description: |
-  Skill for building platform-independent design systems.
-  Develops consistent component libraries for all UI frameworks.
+  플랫폼에 독립적인 디자인 시스템을 구축하는 스킬입니다.
+  모든 UI 프레임워크를 위한 일관된 컴포넌트 라이브러리를 개발합니다.
 
-  Use proactively when user needs consistent UI components or mentions design tokens.
+  일관된 UI 컴포넌트가 필요하거나 디자인 토큰을 언급할 때 선제적으로 사용하십시오.
 
   Triggers: design system, component library, design tokens, shadcn, 디자인 시스템, デザインシステム, 设计系统,
   sistema de diseño, biblioteca de componentes, tokens de diseño,
@@ -12,7 +12,7 @@ description: |
   Design-System, Komponentenbibliothek, Design-Tokens,
   sistema di design, libreria di componenti, token di design
 
-  Do NOT use for: one-off UI changes, backend development, or simple static sites.
+  Do NOT use for: 일회성 UI 변경, 백엔드 개발 또는 단순한 정적 사이트에는 사용하지 마십시오.
 imports:
   - ${PLUGIN_ROOT}/templates/pipeline/phase-5-design-system.template.md
 # hooks: Managed by hooks/hooks.json (unified-write-post.js, unified-stop.js) - GitHub #9354 workaround
@@ -29,490 +29,84 @@ pdca-phase: do
 task-template: "[Phase-5] {feature}"
 ---
 
-# Phase 5: Design System
+# Phase 5: 디자인 시스템 (Design System)
 
-> Build platform-independent design system
+> 플랫폼 독립적인 디자인 시스템 구축
 
-## Purpose
+## 프로젝트 목적
 
-Build a reusable UI component library. Enable consistent design and fast development.
-
----
-
-## What is a Design System?
-
-### Definition
-
-A design system is **a collection of reusable components and clear standards** that enables building consistent user experiences at scale.
-
-### Why is it Needed? (Framework Agnostic)
-
-| Problem | Design System Solution |
-|---------|----------------------|
-| Designer-developer mismatch | Single Source of Truth |
-| Duplicate component development | Reusable component library |
-| Inconsistent UI/UX | Unified design tokens and rules |
-| Increased maintenance cost | Centralized change management |
-| Delayed new member onboarding | Documented component catalog |
-
-### 3 Layers of Design System
-
-```
-┌─────────────────────────────────────────────────────┐
-│              Design Tokens                           │
-│   Color, Typography, Spacing, Radius, Shadow, ...   │
-├─────────────────────────────────────────────────────┤
-│              Core Components                         │
-│   Button, Input, Card, Dialog, Avatar, Badge, ...   │
-├─────────────────────────────────────────────────────┤
-│            Composite Components                      │
-│   Form, DataTable, Navigation, SearchBar, ...       │
-└─────────────────────────────────────────────────────┘
-```
-
-### Platform-specific Implementation Tools
-
-| Platform | Recommended Tools | Design Token Method |
-|----------|------------------|---------------------|
-| **Web (React/Next.js)** | shadcn/ui, Radix | CSS Variables |
-| **Web (Vue)** | Vuetify, PrimeVue | CSS Variables |
-| **Flutter** | Material 3, Custom Theme | ThemeData |
-| **iOS (SwiftUI)** | Native Components | Asset Catalog, Color Set |
-| **Android (Compose)** | Material 3 | MaterialTheme |
-| **React Native** | NativeBase, Tamagui | StyleSheet + Theme |
+재사용 가능한 UI 컴포넌트 라이브러리를 구축합니다. 이를 통해 일관된 디자인을 유지하고 개발 속도를 높일 수 있습니다.
 
 ---
 
-## What to Do in This Phase
+## 디자인 시스템이란?
 
-1. **Install Base Components**: Button, Input, Card, etc.
-2. **Customize**: Adjust to project style
-3. **Composite Components**: Combine multiple base components
-4. **Documentation**: Document component usage
+### 정의
+디자인 시스템은 **재사용 가능한 컴포넌트와 명확한 표준의 집합**으로, 대규모 프로젝트에서도 일관된 사용자 경험을 제공할 수 있게 합니다.
 
-## Deliverables
+### 디자인 시스템의 3개 계층
+1. **디자인 토큰 (Design Tokens)**: 색상, 타이포그래피, 간격, 그림자 등 최소 단위 규칙
+2. **핵심 컴포넌트 (Core Components)**: 버튼, 입력창, 카드, 배지 등 독립된 기능 단위
+3. **복합 컴포넌트 (Composite Components)**: 폼, 데이터 테이블, 네비게이션 등 핵심 컴포넌트의 조합
+
+---
+
+## 이 단계에서 할 일
+
+1. **기본 컴포넌트 설치**: Button, Input, Card 등 필수 요소 설치
+2. **커스터마이징 (Customize)**: 프로젝트 고유 스타일 반영
+3. **복합 컴포넌트 제작**: 여러 기본 컴포넌트를 조합하여 복잡한 UI 제작
+4. **문서화 (Documentation)**: 컴포넌트 사용법 및 디자인 규칙 기록
+
+## 결과물 (Deliverables)
 
 ```
 components/
-└── ui/                     # shadcn/ui components
+└── ui/                     # 기본 UI 컴포넌트 (shadcn/ui 등)
     ├── button.tsx
     ├── input.tsx
-    ├── card.tsx
     └── ...
 
-lib/
-└── utils.ts                # Utilities (cn function, etc.)
-
 docs/02-design/
-└── design-system.md        # Design system specification
+└── design-system.md        # 디자인 시스템 명세서
 ```
 
-## PDCA Application
+---
 
-- **Plan**: Required component list
-- **Design**: Component structure, variants design
-- **Do**: Implement/customize components
-- **Check**: Review consistency
-- **Act**: Finalize and proceed to Phase 6
-
-## Level-wise Application
-
-| Level | Application Method |
-|-------|-------------------|
-| Starter | Optional (simple projects may skip) |
-| Dynamic | Required |
-| Enterprise | Required (including design tokens) |
-
-## shadcn/ui Installation
+## shadcn/ui 활용 (웹 기준)
 
 ```bash
-# Initial setup
+# 초기 설정
 npx shadcn@latest init
 
-# Add components
+# 컴포넌트 추가
 npx shadcn@latest add button
 npx shadcn@latest add input
 npx shadcn@latest add card
 ```
 
-## Required Component List
-
-### Basic
-- Button, Input, Textarea
-- Card, Badge, Avatar
-- Dialog, Sheet, Popover
-
-### Form
-- Form, Label, Select
-- Checkbox, Radio, Switch
-
-### Navigation
-- Navigation Menu, Tabs
-- Breadcrumb, Pagination
-
-## Custom Theme Building
-
-### Design Token Override
-
-shadcn/ui is CSS variable-based, so customize themes in `globals.css`.
+### 디자인 토큰 관리 예시 (globals.css)
 
 ```css
-/* globals.css */
-@layer base {
-  :root {
-    /* ===== Colors ===== */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;      /* Brand main color */
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --accent: 210 40% 96.1%;
-    --destructive: 0 84.2% 60.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    /* ===== Typography ===== */
-    --font-sans: 'Pretendard', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-
-    /* ===== Spacing (rem units) ===== */
-    --spacing-xs: 0.25rem;   /* 4px */
-    --spacing-sm: 0.5rem;    /* 8px */
-    --spacing-md: 1rem;      /* 16px */
-    --spacing-lg: 1.5rem;    /* 24px */
-    --spacing-xl: 2rem;      /* 32px */
-
-    /* ===== Border Radius ===== */
-    --radius: 0.5rem;
-    --radius-sm: 0.25rem;
-    --radius-lg: 0.75rem;
-    --radius-full: 9999px;
-
-    /* ===== Shadows ===== */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    /* ... dark mode overrides */
-  }
+:root {
+  --primary: 221.2 83.2% 53.3%;  /* 브랜드 메인 색상 */
+  --radius: 0.5rem;             /* 기본 둥글기 */
+  --font-sans: 'Pretendard';    /* 본문 폰트 */
 }
-```
-
-### Tailwind Config Extension
-
-```js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        brand: {
-          50: 'hsl(var(--brand-50))',
-          500: 'hsl(var(--brand-500))',
-          900: 'hsl(var(--brand-900))',
-        },
-      },
-      fontFamily: {
-        sans: ['var(--font-sans)', 'system-ui'],
-        mono: ['var(--font-mono)', 'monospace'],
-      },
-      spacing: {
-        'xs': 'var(--spacing-xs)',
-        'sm': 'var(--spacing-sm)',
-        'md': 'var(--spacing-md)',
-        'lg': 'var(--spacing-lg)',
-        'xl': 'var(--spacing-xl)',
-      },
-      borderRadius: {
-        'sm': 'var(--radius-sm)',
-        'DEFAULT': 'var(--radius)',
-        'lg': 'var(--radius-lg)',
-        'full': 'var(--radius-full)',
-      },
-    },
-  },
-}
-```
-
-### Design Token Documentation
-
-Recommended to create `docs/02-design/design-tokens.md` per project:
-
-| Token | Value | Purpose |
-|-------|-------|---------|
-| `--primary` | `221.2 83.2% 53.3%` | Brand main color |
-| `--radius` | `0.5rem` | Default border-radius |
-| `--font-sans` | `Pretendard` | Body font |
-
-## Component Customization
-
-```tsx
-// Extend default button to project style
-const Button = React.forwardRef<
-  HTMLButtonElement,
-  ButtonProps & { isLoading?: boolean }
->(({ isLoading, children, ...props }, ref) => {
-  return (
-    <ButtonPrimitive ref={ref} {...props}>
-      {isLoading ? <Spinner /> : children}
-    </ButtonPrimitive>
-  );
-});
 ```
 
 ---
 
-## Mobile App Design System
+## 프로젝트 레벨별 적용
 
-### Flutter: Custom Theme Building
-
-Flutter defines design tokens through `ThemeData`.
-
-```dart
-// lib/theme/app_theme.dart
-import 'package:flutter/material.dart';
-
-class AppTheme {
-  // ===== Design Tokens =====
-
-  // Colors
-  static const Color primary = Color(0xFF3B82F6);
-  static const Color secondary = Color(0xFF64748B);
-  static const Color destructive = Color(0xFFEF4444);
-  static const Color background = Color(0xFFFFFFFF);
-  static const Color foreground = Color(0xFF0F172A);
-
-  // Spacing
-  static const double spacingXs = 4.0;
-  static const double spacingSm = 8.0;
-  static const double spacingMd = 16.0;
-  static const double spacingLg = 24.0;
-  static const double spacingXl = 32.0;
-
-  // Border Radius
-  static const double radiusSm = 4.0;
-  static const double radiusMd = 8.0;
-  static const double radiusLg = 12.0;
-  static const double radiusFull = 9999.0;
-
-  // ===== Theme Data =====
-
-  static ThemeData get lightTheme => ThemeData(
-    useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: primary,
-      brightness: Brightness.light,
-    ),
-    fontFamily: 'Pretendard',
-
-    // Button Theme
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.symmetric(
-          horizontal: spacingMd,
-          vertical: spacingSm,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(radiusMd),
-        ),
-      ),
-    ),
-
-    // Card Theme
-    cardTheme: CardTheme(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radiusLg),
-      ),
-    ),
-
-    // Input Theme
-    inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(radiusMd),
-      ),
-      contentPadding: EdgeInsets.all(spacingSm),
-    ),
-  );
-
-  static ThemeData get darkTheme => ThemeData(
-    useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: primary,
-      brightness: Brightness.dark,
-    ),
-    fontFamily: 'Pretendard',
-    // ... dark theme overrides
-  );
-}
-```
-
-### Flutter: Reusable Components
-
-```dart
-// lib/components/app_button.dart
-import 'package:flutter/material.dart';
-import '../theme/app_theme.dart';
-
-enum AppButtonVariant { primary, secondary, destructive, outline }
-
-class AppButton extends StatelessWidget {
-  final String label;
-  final VoidCallback? onPressed;
-  final AppButtonVariant variant;
-  final bool isLoading;
-
-  const AppButton({
-    required this.label,
-    this.onPressed,
-    this.variant = AppButtonVariant.primary,
-    this.isLoading = false,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: isLoading ? null : onPressed,
-      style: _getStyle(),
-      child: isLoading
-          ? SizedBox(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(strokeWidth: 2),
-            )
-          : Text(label),
-    );
-  }
-
-  ButtonStyle _getStyle() {
-    switch (variant) {
-      case AppButtonVariant.destructive:
-        return ElevatedButton.styleFrom(
-          backgroundColor: AppTheme.destructive,
-        );
-      case AppButtonVariant.outline:
-        return ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          side: BorderSide(color: AppTheme.primary),
-        );
-      default:
-        return ElevatedButton.styleFrom();
-    }
-  }
-}
-```
-
-### Flutter: Project Structure
-
-```
-lib/
-├── theme/
-│   ├── app_theme.dart          # ThemeData + Design Tokens
-│   ├── app_colors.dart         # Color constants
-│   ├── app_typography.dart     # TextStyle definitions
-│   └── app_spacing.dart        # Spacing constants
-├── components/
-│   ├── app_button.dart
-│   ├── app_input.dart
-│   ├── app_card.dart
-│   └── app_dialog.dart
-└── main.dart
-```
+| 레벨 | 적용 방식 |
+|-------|-------------------|
+| 스타터 | 선택 사항 (간단한 프로젝트는 생략 가능) |
+| 다이내믹 | 필수 요소 |
+| 엔터프라이즈 | 필수 요소 (디자인 토큰 시스템 포함) |
 
 ---
 
-## Cross-Platform Design Token Sharing
+## 다음 단계
 
-### Design Token JSON (Platform Independent)
-
-Centrally manage tokens with Figma Tokens or Style Dictionary.
-
-```json
-// tokens/design-tokens.json
-{
-  "color": {
-    "primary": { "value": "#3B82F6" },
-    "secondary": { "value": "#64748B" },
-    "destructive": { "value": "#EF4444" }
-  },
-  "spacing": {
-    "xs": { "value": "4px" },
-    "sm": { "value": "8px" },
-    "md": { "value": "16px" },
-    "lg": { "value": "24px" }
-  },
-  "radius": {
-    "sm": { "value": "4px" },
-    "md": { "value": "8px" },
-    "lg": { "value": "12px" }
-  },
-  "font": {
-    "family": { "value": "Pretendard" },
-    "size": {
-      "sm": { "value": "14px" },
-      "md": { "value": "16px" },
-      "lg": { "value": "18px" }
-    }
-  }
-}
-```
-
-### Platform-specific Conversion
-
-```bash
-# Generate tokens for each platform with Style Dictionary
-npx style-dictionary build
-
-# Output:
-# - build/css/variables.css      (Web)
-# - build/dart/app_tokens.dart   (Flutter)
-# - build/swift/AppTokens.swift  (iOS)
-# - build/kt/AppTokens.kt        (Android)
-```
-
----
-
-## Design System Checklist (Platform Agnostic)
-
-### Required Items
-
-- [ ] **Design Tokens Definition**
-  - [ ] Colors (Primary, Secondary, Semantic)
-  - [ ] Typography (Font Family, Sizes, Weights)
-  - [ ] Spacing (xs, sm, md, lg, xl)
-  - [ ] Border Radius
-  - [ ] Shadows/Elevation
-
-- [ ] **Core Components**
-  - [ ] Button (variants: primary, secondary, outline, destructive)
-  - [ ] Input/TextField
-  - [ ] Card
-  - [ ] Dialog/Modal
-  - [ ] Avatar
-  - [ ] Badge
-
-- [ ] **Composite Components**
-  - [ ] Form (with validation)
-  - [ ] Navigation (Header, Sidebar, Bottom Nav)
-  - [ ] Data Display (Table, List)
-
-- [ ] **Documentation**
-  - [ ] Component catalog (Storybook / Widgetbook)
-  - [ ] Usage guidelines
-  - [ ] Do's and Don'ts
-
----
-
-## Template
-
-See `templates/pipeline/phase-5-design-system.template.md`
-
-## Next Phase
-
-Phase 6: UI Implementation + API Integration → Components are ready, now implement actual screens
+Phase 6: UI 구현 + API 연동 → 컴포넌트가 준비되었으니, 이제 실제 화면을 구현하고 데이터를 연결합니다.

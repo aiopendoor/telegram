@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), "../../00_Core/.env"))
 
 API_ID = int(os.getenv("TELEGRAM_API_ID"))
 API_HASH = os.getenv("TELEGRAM_API_HASH")

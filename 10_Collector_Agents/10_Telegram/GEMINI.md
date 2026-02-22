@@ -12,6 +12,10 @@ This file defines the global rules and behaviors for the GIIP Agent system. All 
 - 20260130 19:12:00: Initialized bkit Vibecoding Kit integration. Updated GEMINI.md and enabled hooks.
 - 20260131 11:43:00: Started task to find and convert absolute paths to relative paths.
 - 20260131 12:24:00: Completed path normalization. Updated `.gemini\README.md` and `.agent\lib\common.js.backup`.
+- 20260222 17:27:00: Added strict rule for using relative paths at USER request.
+
+## 🏗️ Core Conventions
+1. **Relative Paths Only**: 모든 프로젝트 파일 및 설정에서 절대 경로를 피하고 **상대 경로**를 사용해야 합니다. 이는 환경 이동성과 이식성을 보장하기 위함입니다.
 
 ## 🏗️ React & Next.js Best Practices
 Agents working on frontend code must follow the Vercel Engineering Best Practices defined in `.agent/rules/`.

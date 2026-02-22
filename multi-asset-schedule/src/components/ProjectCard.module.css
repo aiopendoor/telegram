@@ -1,0 +1,215 @@
+.card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-gray-200);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* 그리드 셀 높이에 맞추기 */
+}
+
+.projectCompleted {
+    opacity: 0.6;
+    background-color: var(--color-gray-50);
+}
+
+.headerTitleGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.completeButton {
+    font-size: var(--text-xs);
+    padding: 0.35rem 0.75rem;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--color-gray-300);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.completeButton:hover {
+    background-color: var(--color-gray-100);
+    border-color: var(--text-secondary);
+}
+
+.completeButton.active {
+    background-color: var(--color-success);
+    color: white;
+    border-color: var(--color-success);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.department {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.progress {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    padding: 0.5rem 1rem;
+    background-color: var(--color-primary-light);
+    border-radius: var(--border-radius);
+}
+
+.taskSection {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.taskHeader {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.emptyMessage {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+}
+
+.taskHeaderRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.addTaskButton {
+    font-size: var(--text-xs);
+    padding: 0.25rem 0.5rem;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.addTaskButton:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.workflowContainer {
+    position: relative;
+}
+
+.addStepButton {
+    margin-top: 0.5rem;
+    font-size: var(--text-xs);
+    padding: 0.25rem 0.5rem;
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px dashed var(--color-primary);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.addStepButton:hover {
+    background-color: var(--color-primary-light);
+}
+
+.workflowActions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.deleteStepButton {
+    font-size: var(--text-xs);
+    padding: 0.25rem 0.5rem;
+    background-color: transparent;
+    color: #ef4444;
+    border: 1px dashed #ef4444;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.deleteStepButton:hover {
+    background-color: #fef2f2;
+}
+
+@media (max-width: 640px) {
+    .card {
+        padding: 1rem;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+.deleteProjectButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.2rem;
+    margin-left: 0.5rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.deleteProjectButton:hover {
+    opacity: 1;
+}
+
+.deleteProjectButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.2rem;
+    margin-left: 0.5rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.deleteProjectButton:hover {
+    opacity: 1;
+}
+
+.deleteProjectButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.2rem;
+    margin-left: 0.5rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.deleteProjectButton:hover {
+    opacity: 1;
+}

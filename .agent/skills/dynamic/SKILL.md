@@ -1,12 +1,12 @@
 ---
 name: dynamic
 description: |
-  Fullstack development skill using bkend.ai BaaS platform.
-  Covers authentication, data storage, API integration for dynamic web apps.
+  bkend.ai BaaS 플랫폼을 사용한 풀스택 개발 스킬입니다.
+  다이내믹 웹 앱을 위한 인증, 데이터 저장, API 연동을 다룹니다.
 
-  Project initialization with "init dynamic" or "dynamic init".
+  "init dynamic" 또는 "dynamic init" 명령어로 프로젝트를 시작하십시오.
 
-  Use proactively when user needs login, database, or backend features without managing servers.
+  사용자가 서버 관리 없이 로그인, 데이터베이스 또는 백엔드 기능이 필요할 때 선제적으로 사용하십시오.
 
   Triggers: fullstack, BaaS, bkend, authentication, login feature, signup, database,
   web app, SaaS, MVP, init dynamic, dynamic init,
@@ -17,7 +17,7 @@ description: |
   Authentifizierung, Anmeldung, Registrierung, Datenbank, Fullstack, Web-App,
   autenticazione, accesso, registrazione, database, fullstack, applicazione web
 
-  Do NOT use for: static websites, Enterprise-grade systems requiring custom infrastructure.
+  Do NOT use for: 정적 웹사이트, 맞춤형 인프라가 필요한 엔터프라이즈급 시스템에는 사용하지 마십시오.
 argument-hint: "[init|guide|help]"
 agent: bkit:bkend-expert
 allowed-tools:
@@ -36,286 +36,140 @@ pdca-phase: plan
 task-template: "[Init-Dynamic] {feature}"
 ---
 
-# Intermediate (Dynamic) Skill
+# 중급 (Dynamic) 스킬 가이드
 
-## Actions
+## 제공 액션 (Actions)
 
-| Action | Description | Example |
+| 액션 | 설명 | 예시 |
 |--------|-------------|---------|
-| `init` | Project initialization (/init-dynamic feature) | `/dynamic init my-saas` |
-| `guide` | Display development guide | `/dynamic guide` |
-| `help` | BaaS integration help | `/dynamic help` |
+| `init` | 프로젝트 초기화 (/init-dynamic 기능) | `/dynamic init my-saas` |
+| `guide` | 개발 가이드 표시 | `/dynamic guide` |
+| `help` | BaaS 연동 도움말 | `/dynamic help` |
 
-### init (Project Initialization)
-1. Create Next.js + Tailwind project structure
-2. Configure bkend.ai MCP (.mcp.json)
-3. Create CLAUDE.md (Level: Dynamic specified)
-4. Create docs/ folder structure
-5. src/lib/bkend.ts client template
-6. Initialize .bkit-memory.json
+### init (프로젝트 초기화)
+1. Next.js + Tailwind 프로젝트 구조 생성
+2. bkend.ai MCP 설정 (.mcp.json)
+3. CLAUDE.md 생성 (다이내믹 프로젝트 레벨 명시)
+4. docs/ 폴더 구조 생성
+5. src/lib/bkend.ts 클라이언트 템플릿 생성
+6. .bkit-memory.json 초기화
 
-### guide (Development Guide)
-- bkend.ai auth/data configuration guide
-- Phase 1-9 full Pipeline guide
-- API integration patterns
+### guide (개발 가이드)
+- bkend.ai 인증/데이터 설정 가이드
+- Phase 1-9 전체 파이프라인 가이드
+- API 연동 패턴 안내
 
-### help (BaaS Help)
-- Explain bkend.ai basic concepts
-- Auth, database, file storage usage
-- MCP integration methods
+### help (BaaS 도움말)
+- bkend.ai 기본 개념 설명
+- 인증, 데이터베이스, 파일 저장소 사용법
+- MCP 연동 방법 설명
 
-## Target Audience
+## 권장 대상
 
-- Frontend developers
-- Solo entrepreneurs
-- Those who want to build fullstack services quickly
+- 프론트엔드 개발자
+- 1인 창업자
+- 풀스택 서비스를 빠르게 구축하고자 하는 개발자
 
-## Tech Stack
+## 기술 스택 (Tech Stack)
 
 ```
 Frontend:
 - React / Next.js 14+
 - TypeScript
 - Tailwind CSS
-- TanStack Query (data fetching)
-- Zustand (state management)
+- TanStack Query (데이터 패칭)
+- Zustand (상태 관리)
 
 Backend (BaaS):
 - bkend.ai
-  - Auto REST API
-  - MongoDB database
-  - Built-in authentication (JWT)
-  - Real-time features (WebSocket)
+  - 자동 REST API 생성
+  - MongoDB 기반 데이터베이스
+  - 내장 인증 시스템 (JWT)
+  - 실시간 기능 (WebSocket)
 
 Deployment:
-- Vercel (frontend)
-- bkend.ai (backend)
+- Vercel (프론트엔드)
+- bkend.ai (백엔드)
 ```
 
-### Language Tier Guidance (v1.3.0)
+### 언어 티어 가이드 (Language Tier Guidance)
 
-> **Recommended**: Tier 1-2 languages
+> **권장**: 티어 1-2 언어
 >
-> Dynamic level supports full-stack development with strong AI compatibility.
+> 다이내믹 레벨은 AI와 높은 호환성을 가진 풀스택 개발을 지원합니다.
 
-| Tier | Allowed | Reason |
+| 티어 | 허용 여부 | 이유 |
 |------|---------|--------|
-| Tier 1 | ✅ Primary | Full AI support |
-| Tier 2 | ✅ Yes | Mobile (Flutter/RN), Modern web (Vue, Astro) |
-| Tier 3 | ⚠️ Limited | Platform-specific needs only |
-| Tier 4 | ❌ No | Migration recommended |
+| Tier 1 | ✅ 최우선 | AI의 풀 지원 가능 |
+| Tier 2 | ✅ 허용 | 모바일(Flutter/RN), 현대적 웹(Vue, Astro) |
+| Tier 3 | ⚠️ 제한적 | 플랫폼 종속적인 필요성이 있을 때만 |
+| Tier 4 | ❌ 부적합 | 이관(Migration) 권장 |
 
-**Mobile Development**:
-- React Native (Tier 1 via TypeScript) - Recommended
-- Flutter (Tier 2 via Dart) - Supported
+**모바일 개발**:
+- React Native (TypeScript 기반 티어 1) - 권장
+- Flutter (Dart 기반 티어 2) - 지원 가능
 
-## Project Structure
+## 프로젝트 구조
 
 ```
 project/
 ├── src/
 │   ├── app/                    # Next.js App Router
-│   │   ├── (auth)/            # Auth-related routes
+│   │   ├── (auth)/            # 인증 관련 라우트
 │   │   │   ├── login/
 │   │   │   └── register/
-│   │   ├── (main)/            # Main routes
+│   │   ├── (main)/            # 주요 기능 라우트
 │   │   │   ├── dashboard/
 │   │   │   └── settings/
 │   │   ├── layout.tsx
 │   │   └── page.tsx
 │   │
-│   ├── components/             # UI components
-│   │   ├── ui/                # Basic UI (Button, Input...)
-│   │   └── features/          # Feature-specific components
+│   ├── components/             # UI 컴포넌트
+│   │   ├── ui/                # 공통 UI (Button, Input 등)
+│   │   └── features/          # 기능별 특정 컴포넌트
 │   │
-│   ├── hooks/                  # Custom hooks
+│   ├── hooks/                  # 커스텀 훅
 │   │   ├── useAuth.ts
 │   │   └── useQuery.ts
 │   │
-│   ├── lib/                    # Utilities
-│   │   ├── bkend.ts           # bkend.ai client
+│   ├── lib/                    # 유틸리티 및 클라이언트
+│   │   ├── bkend.ts           # bkend.ai 클라이언트 설정
 │   │   └── utils.ts
 │   │
-│   ├── stores/                 # State management (Zustand)
+│   ├── stores/                 # 전역 상태 관리 (Zustand)
 │   │   └── auth-store.ts
 │   │
-│   └── types/                  # TypeScript types
+│   └── types/                  # TypeScript 타입 정의
 │       └── index.ts
 │
-├── docs/                       # PDCA documents
+├── docs/                       # PDCA 문서
 │   ├── 01-plan/
 │   ├── 02-design/
-│   │   ├── data-model.md      # Data model
-│   │   └── api-spec.md        # API specification
+│   │   ├── data-model.md      # 데이터 모델링
+│   │   └── api-spec.md        # API 명세
 │   ├── 03-analysis/
 │   └── 04-report/
 │
-├── .mcp.json                   # bkend.ai MCP config
-├── .env.local                  # Environment variables
+├── .mcp.json                   # bkend.ai MCP 설정
+├── .env.local                  # 환경 변수
 ├── package.json
 └── README.md
 ```
 
-## Core Patterns
-
-### bkend.ai Client Setup
-
-```typescript
-// lib/bkend.ts
-import { createClient } from '@bkend/client';
-
-export const bkend = createClient({
-  apiKey: process.env.NEXT_PUBLIC_BKEND_API_KEY!,
-  projectId: process.env.NEXT_PUBLIC_BKEND_PROJECT_ID!,
-});
-```
-
-### Authentication Hook
-
-```typescript
-// hooks/useAuth.ts
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { bkend } from '@/lib/bkend';
-
-interface AuthState {
-  user: User | null;
-  isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-}
-
-export const useAuth = create<AuthState>()(
-  persist(
-    (set) => ({
-      user: null,
-      isLoading: false,
-
-      login: async (email, password) => {
-        set({ isLoading: true });
-        const { user, token } = await bkend.auth.login({ email, password });
-        set({ user, isLoading: false });
-      },
-
-      logout: () => {
-        bkend.auth.logout();
-        set({ user: null });
-      },
-    }),
-    { name: 'auth-storage' }
-  )
-);
-```
-
-### Data Fetching (TanStack Query)
-
-```typescript
-// List query
-const { data, isLoading, error } = useQuery({
-  queryKey: ['items', filters],
-  queryFn: () => bkend.collection('items').find(filters),
-});
-
-// Single item query
-const { data: item } = useQuery({
-  queryKey: ['items', id],
-  queryFn: () => bkend.collection('items').findById(id),
-  enabled: !!id,
-});
-
-// Create/Update (Mutation)
-const mutation = useMutation({
-  mutationFn: (newItem) => bkend.collection('items').create(newItem),
-  onSuccess: () => {
-    queryClient.invalidateQueries(['items']);
-  },
-});
-```
-
-### Protected Route
-
-```typescript
-// components/ProtectedRoute.tsx
-'use client';
-
-import { useAuth } from '@/hooks/useAuth';
-import { redirect } from 'next/navigation';
-
-export function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { user, isLoading } = useAuth();
-
-  if (isLoading) return <LoadingSpinner />;
-  if (!user) redirect('/login');
-
-  return <>{children}</>;
-}
-```
-
-## Data Model Design Principles
-
-```typescript
-// Base fields (auto-generated)
-interface BaseDocument {
-  _id: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-// User reference
-interface Post extends BaseDocument {
-  userId: string;        // Author ID (reference)
-  title: string;
-  content: string;
-  tags: string[];        // Array field
-  metadata: {            // Embedded object
-    viewCount: number;
-    likeCount: number;
-  };
-}
-```
-
-## MCP Integration (.mcp.json)
-
-```json
-{
-  "mcpServers": {
-    "bkend": {
-      "command": "npx",
-      "args": ["@bkend/mcp-server"],
-      "env": {
-        "BKEND_API_KEY": "${BKEND_API_KEY}",
-        "BKEND_PROJECT_ID": "${BKEND_PROJECT_ID}"
-      }
-    }
-  }
-}
-```
-
-## Limitations
+## 핵심 요약 및 한계
 
 ```
-❌ Complex backend logic (serverless function limits)
-❌ Large-scale traffic (within BaaS limits)
-❌ Custom infrastructure control
-❌ Microservices architecture
+❌ 한계점:
+- 복잡한 백엔드 로직 (Serverless function 제한)
+- 대규모 트래픽 (BaaS 할당량 제한 이내)
+- 인프라 직접 제어 불가
+- 마이크로서비스 아키텍처 비적합
 ```
 
-## When to Upgrade
+## 업그레이드 시점
 
-Move to **Enterprise Level** if you need:
-
-```
-→ "Traffic will increase significantly"
-→ "I want to split into microservices"
-→ "I need my own server/infrastructure"
-→ "I need complex backend logic"
-```
-
-## Common Mistakes
-
-| Mistake | Solution |
-|---------|----------|
-| CORS error | Register domain in bkend.ai console |
-| 401 Unauthorized | Token expired, re-login or refresh token |
-| Data not showing | Check collection name, query conditions |
-| Type error | Sync TypeScript type definitions with schema |
+다음과 같은 경우 **엔터프라이즈 레벨**로 전환하십시오:
+- → "트래픽이 폭발적으로 증가할 것으로 예상될 때"
+- → "마이크로서비스로 분리하고 싶을 때"
+- → "자체 서버/인프라 구축이 필요할 때"
+- → "복잡한 백엔드 비즈니스 로직이 필요할 때"

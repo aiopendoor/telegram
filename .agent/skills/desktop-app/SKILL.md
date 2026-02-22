@@ -1,10 +1,10 @@
 ---
 name: desktop-app
 description: |
-  Desktop app development guide for cross-platform desktop applications.
-  Covers Electron and Tauri frameworks.
+  크로스 플랫폼 데스크톱 애플리케이션 개발을 위한 가이드입니다.
+  Electron 및 Tauri 프레임워크를 다룹니다.
 
-  Use proactively when user wants to build desktop applications with web technologies.
+  사용자가 웹 기술을 사용하여 데스크톱 앱을 구축하고자 할 때 선제적으로 사용하십시오.
 
   Triggers: desktop app, Electron, Tauri, mac app, windows app, 데스크톱 앱, デスクトップアプリ, 桌面应用,
   aplicación de escritorio, app de escritorio,
@@ -12,7 +12,7 @@ description: |
   Desktop-Anwendung, Desktop-App,
   applicazione desktop, app desktop
 
-  Do NOT use for: web-only projects, mobile apps, or server-side development.
+  Do NOT use for: 웹 전용 프로젝트, 모바일 앱 또는 서버 사이드 개발에는 사용하지 마십시오.
 agent: bkit:pipeline-guide
 allowed-tools:
   - Read
@@ -25,585 +25,180 @@ allowed-tools:
 user-invocable: false
 ---
 
-# Desktop App Development Expertise
+# 데스크톱 앱 개발 가이드 (Desktop App Development)
 
-## Overview
+## 개요 (Overview)
 
-A guide for developing desktop apps using web technologies (HTML, CSS, JavaScript).
-Support Windows, macOS, and Linux simultaneously with a single codebase.
+웹 기술(HTML, CSS, JavaScript)을 사용하여 데스크톱 앱을 개발하기 위한 가이드입니다.
+단일 코드베이스로 Windows, macOS, Linux를 동시에 지원할 수 있습니다.
 
 ---
 
-## Framework Selection Guide
+## 프레임워크 선택 가이드 (Framework Selection)
 
-### Framework Selection by Tier (v1.3.0)
+### 티어별 프레임워크 추천 (v1.3.0)
 
-| Framework | Tier | Recommendation | Use Case |
+| 프레임워크 | 티어 (Tier) | 추천도 | 주요 특징 |
 |-----------|------|----------------|----------|
-| **Tauri** | Tier 2 | ⭐ Primary | Lightweight (3MB), Rust security |
-| **Electron** | Tier 3 | Supported | Mature ecosystem, VS Code-like apps |
+| **Tauri** | Tier 2 | ⭐ 최우선 추천 | 가벼움 (3MB), Rust 기반 보안, 고성능 |
+| **Electron** | Tier 3 | 지원 가능 | 성숙한 생태계, VS Code 등 검증된 사례 |
 
-> **AI-Native Recommendation**: Tauri
-> - 35% YoY growth
-> - 20-40MB memory vs Electron's 200-400MB
-> - Mobile support (iOS/Android) via Tauri 2.0
-> - Rust backend = memory safety
+> **AI-Native 추천**: Tauri
+> - 연간 35% 성장률
+> - 메모리 사용량 20-40MB (Electron은 200-400MB)
+> - Tauri 2.0을 통한 모바일(iOS/Android) 지원
+> - Rust 백엔드를 통한 메모리 안전성 확보
 
-> **Ecosystem Recommendation**: Electron
-> - Mature tooling
-> - Node.js integration
-> - Proven at scale (VS Code, Slack)
+> **생태계 추천**: Electron
+> - 풍부한 라이브러리 및 도구
+> - Node.js 기술 스택 완전 활용
+> - VS Code, Slack 등 대규모 서비스에서 검증됨
 
-### Level-wise Recommendations
+### 프로젝트 레벨별 권장 사항
 
 ```
-Starter → Tauri (v2) [Tier 2]
-  - Simpler setup than Electron
-  - Smaller output bundles (~3MB vs ~150MB)
+Starter (스타터) → Tauri (v2) [Tier 2]
+  - Electron보다 설정이 간단함
+  - 실행 파일 용량이 매우 작음 (~3MB vs ~150MB)
 
-Dynamic → Tauri + auto-update [Tier 2]
-  - Includes server integration, auto-update
-  - Lower memory footprint
+Dynamic (다이내믹) → Tauri + 자동 업데이트 [Tier 2]
+  - 서버 연동 및 자동 업데이트 포함
+  - 낮은 메모리 점유율로 쾌적한 환경 제공
 
-Enterprise → Tauri [Tier 2] or Electron [Tier 3]
-  - Tauri for performance and security
-  - Electron for complex Node.js integration
+Enterprise (엔터프라이즈) → Tauri [Tier 2] 또는 Electron [Tier 3]
+  - 성능과 보안이 중요하다면 Tauri 추천
+  - 복잡한 Node.js 통합이 필요하다면 Electron 추천
 ```
 
 ---
 
-## Electron Guide
+## Electron 가이드
 
-### Project Creation
+### 프로젝트 생성
 
 ```bash
-# Create with electron-vite (recommended)
+# electron-vite로 생성 (권장)
 npm create @electron-vite/create my-electron-app
 cd my-electron-app
 
-# Install dependencies
+# 의존성 설치
 npm install
 
-# Start development server
+# 개발 서버 실행
 npm run dev
 ```
 
-### Folder Structure
+### 폴더 구조
 
 ```
 my-electron-app/
 ├── src/
-│   ├── main/               # Main process (Node.js)
-│   │   └── index.ts        # App entry point, window management
-│   ├── preload/            # Preload script
-│   │   └── index.ts        # Renderer↔Main bridge
-│   └── renderer/           # Renderer process (Web)
-│       ├── src/            # React/Vue code
-│       └── index.html      # HTML entry point
-├── resources/              # App icons, assets
-├── electron.vite.config.ts # Build configuration
-├── electron-builder.yml    # Deployment configuration
+│   ├── main/               # 메인 프로세스 (Node.js)
+│   │   └── index.ts        # 앱 진입점, 윈도우 관리
+│   ├── preload/            # 프리로드 스크립트
+│   │   └── index.ts        # 렌더러↔메인 브릿지
+│   └── renderer/           # 렌더러 프로세스 (Web)
+│       ├── src/            # React/Vue 코드
+│       └── index.html      # HTML 진입점
+├── resources/              # 앱 아이콘, 에셋
+├── electron.vite.config.ts # 빌드 설정
+├── electron-builder.yml    # 배포 설정
 └── package.json
 ```
 
-### Core Concept: Process Separation
+### 핵심 개념: 프로세스 분리 (Process Separation)
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                    Electron App                      │
+│                    데스크톱 앱 (Electron)             │
 ├─────────────────────────────────────────────────────┤
-│  Main Process (Node.js)                             │
-│  - System API access (files, network, etc.)         │
-│  - Window creation/management                       │
-│  - Menu, tray management                            │
+│  메인 프로세스 (Main Process - Node.js)               │
+│  - 시스템 API 접근 (파일, 네트워크 등)                 │
+│  - 윈도우 생성 및 관리                                │
+│  - 메뉴, 트레이 관리                                  │
 ├─────────────────────────────────────────────────────┤
-│  Preload Script (Bridge)                            │
-│  - Safe main↔renderer communication                 │
-│  - Expose only specific APIs                        │
+│  프리로드 스크립트 (Preload - Bridge)                  │
+│  - 메인↔렌더러 간 안전한 통신                         │
+│  - 특정 API만 선별적으로 노출                         │
 ├─────────────────────────────────────────────────────┤
-│  Renderer Process (Chromium)                        │
-│  - Web UI (React, Vue, etc.)                        │
-│  - DOM access                                       │
-│  - No direct Node.js API access (security)          │
+│  렌더러 프로세스 (Renderer - Chromium)                │
+│  - 웹 UI (React, Vue 등)                              │
+│  - DOM 접근                                          │
+│  - 보안을 위해 Node.js API 직접 접근 불가               │
 └─────────────────────────────────────────────────────┘
-```
-
-### Main Process
-
-```typescript
-// src/main/index.ts
-import { app, BrowserWindow, ipcMain } from 'electron';
-import { join } from 'path';
-
-let mainWindow: BrowserWindow | null = null;
-
-function createWindow() {
-  mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
-      sandbox: false,
-    },
-  });
-
-  // Dev mode: Load Vite server
-  if (process.env.NODE_ENV === 'development') {
-    mainWindow.loadURL('http://localhost:5173');
-    mainWindow.webContents.openDevTools();
-  } else {
-    // Production: Load built files
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'));
-  }
-}
-
-app.whenReady().then(createWindow);
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
-
-// IPC: Handle requests from renderer
-ipcMain.handle('read-file', async (event, filePath) => {
-  const fs = await import('fs/promises');
-  return fs.readFile(filePath, 'utf-8');
-});
-```
-
-### Preload Script
-
-```typescript
-// src/preload/index.ts
-import { contextBridge, ipcRenderer } from 'electron';
-
-// APIs to safely expose to renderer
-contextBridge.exposeInMainWorld('electronAPI', {
-  // Read file
-  readFile: (filePath: string) => ipcRenderer.invoke('read-file', filePath),
-
-  // Save file dialog
-  saveFile: (content: string) => ipcRenderer.invoke('save-file', content),
-
-  // App version
-  getVersion: () => process.env.npm_package_version,
-
-  // Platform
-  platform: process.platform,
-});
-
-// Type definitions (for use in renderer)
-declare global {
-  interface Window {
-    electronAPI: {
-      readFile: (path: string) => Promise<string>;
-      saveFile: (content: string) => Promise<void>;
-      getVersion: () => string;
-      platform: NodeJS.Platform;
-    };
-  }
-}
-```
-
-### Renderer Process
-
-```typescript
-// src/renderer/src/App.tsx
-import { useState } from 'react';
-
-function App() {
-  const [content, setContent] = useState('');
-
-  const handleOpenFile = async () => {
-    const result = await window.electronAPI.readFile('/path/to/file.txt');
-    setContent(result);
-  };
-
-  return (
-    <div className="app">
-      <h1>My Electron App</h1>
-      <p>Platform: {window.electronAPI.platform}</p>
-      <button onClick={handleOpenFile}>Open File</button>
-      <pre>{content}</pre>
-    </div>
-  );
-}
-
-export default App;
-```
-
-### Creating Menus
-
-```typescript
-// src/main/menu.ts
-import { Menu, app, shell } from 'electron';
-
-const template: Electron.MenuItemConstructorOptions[] = [
-  {
-    label: 'File',
-    submenu: [
-      { label: 'New File', accelerator: 'CmdOrCtrl+N', click: () => {} },
-      { label: 'Open', accelerator: 'CmdOrCtrl+O', click: () => {} },
-      { type: 'separator' },
-      { label: 'Quit', role: 'quit' },
-    ],
-  },
-  {
-    label: 'Edit',
-    submenu: [
-      { label: 'Undo', role: 'undo' },
-      { label: 'Redo', role: 'redo' },
-      { type: 'separator' },
-      { label: 'Cut', role: 'cut' },
-      { label: 'Copy', role: 'copy' },
-      { label: 'Paste', role: 'paste' },
-    ],
-  },
-  {
-    label: 'Help',
-    submenu: [
-      {
-        label: 'Documentation',
-        click: () => shell.openExternal('https://docs.example.com'),
-      },
-    ],
-  },
-];
-
-// Add macOS app menu
-if (process.platform === 'darwin') {
-  template.unshift({
-    label: app.getName(),
-    submenu: [
-      { role: 'about' },
-      { type: 'separator' },
-      { role: 'services' },
-      { type: 'separator' },
-      { role: 'hide' },
-      { role: 'unhide' },
-      { type: 'separator' },
-      { role: 'quit' },
-    ],
-  });
-}
-
-export const menu = Menu.buildFromTemplate(template);
-```
-
-### System Tray
-
-```typescript
-// src/main/tray.ts
-import { Tray, Menu, nativeImage } from 'electron';
-import { join } from 'path';
-
-let tray: Tray | null = null;
-
-export function createTray() {
-  const icon = nativeImage.createFromPath(join(__dirname, '../../resources/icon.png'));
-  tray = new Tray(icon.resize({ width: 16, height: 16 }));
-
-  const contextMenu = Menu.buildFromTemplate([
-    { label: 'Open', click: () => {} },
-    { type: 'separator' },
-    { label: 'Quit', role: 'quit' },
-  ]);
-
-  tray.setToolTip('My App');
-  tray.setContextMenu(contextMenu);
-}
 ```
 
 ---
 
-## Tauri Guide
+## Tauri 가이드
 
-### Project Creation
+### 프로젝트 생성
 
 ```bash
-# Prerequisite: Rust installation required
-# Install from https://rustup.rs
+# 사전 준비: Rust 설치 필수 (https://rustup.rs)
 
-# Create Tauri project
+# Tauri 앱 생성
 npm create tauri-app my-tauri-app
 cd my-tauri-app
 
-# Install dependencies
+# 의존성 설치
 npm install
 
-# Start development server
+# 개발 서버 실행
 npm run tauri dev
 ```
 
-### Folder Structure
+### 폴더 구조
 
 ```
 my-tauri-app/
-├── src/                    # Frontend (React, Vue, etc.)
+├── src/                    # 프론트엔드 (React, Vue 등)
 │   ├── App.tsx
 │   └── main.tsx
-├── src-tauri/              # Tauri backend (Rust)
+├── src-tauri/              # Tauri 백엔드 (Rust)
 │   ├── src/
-│   │   ├── main.rs         # Main entry point
-│   │   └── lib.rs          # Command definitions
-│   ├── tauri.conf.json     # Tauri configuration
-│   └── Cargo.toml          # Rust dependencies
+│   │   ├── main.rs         # 메인 진입점
+│   │   └── lib.rs          # 명령어(Command) 정의
+│   ├── tauri.conf.json     # Tauri 설정 파일
+│   └── Cargo.toml          # Rust 의존성 관리
 ├── public/
 └── package.json
 ```
 
-### Command Definition (Rust)
+---
 
-```rust
-// src-tauri/src/lib.rs
-use tauri::command;
+## 웹 vs 데스크톱 차이점
 
-#[command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}!", name)
-}
+### 파일 시스템 접근
+- **웹**: 불가능 (사용자가 직접 파일을 선택해야 함)
+- **데스크톱**: 자유로운 읽기/쓰기 권한
 
-#[command]
-async fn read_file(path: &str) -> Result<String, String> {
-    std::fs::read_to_string(path)
-        .map_err(|e| e.to_string())
-}
-
-#[cfg_attr(mobile, tauri::mobile_entry_point)]
-pub fn run() {
-    tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, read_file])
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
-}
-```
-
-### Calling from Frontend
-
-```typescript
-// src/App.tsx
-import { invoke } from '@tauri-apps/api/core';
-
-function App() {
-  const [greeting, setGreeting] = useState('');
-
-  const handleGreet = async () => {
-    const result = await invoke('greet', { name: 'World' });
-    setGreeting(result as string);
-  };
-
-  const handleReadFile = async () => {
-    try {
-      const content = await invoke('read_file', { path: '/path/to/file.txt' });
-      console.log(content);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return (
-    <div>
-      <button onClick={handleGreet}>Greet</button>
-      <p>{greeting}</p>
-    </div>
-  );
-}
-```
+### 시스템 통합 기능
+- 시스템 트레이 아이콘 (System Tray)
+- 전역 단축키 (Global Shortcuts)
+- 네이티브 알림 (Native Notifications)
+- 드래그 앤 드롭 (파일 경로 직접 획득)
+- 메뉴바(Menu) 구성
 
 ---
 
-## Web vs Desktop Differences
+## 데스크톱용 PDCA 체크리스트
 
-### File System Access
+### Phase 1: 스키마 (Schema)
+- [ ] 로컬 데이터 저장 방식 결정 (SQLite, JSON 파일 등)
+- [ ] 클라우드 동기화 필요 여부 결정
 
-```typescript
-// Web: Not possible (user must select directly)
-// Desktop: Free access
+### Phase 3: 목업 (Mockup)
+- [ ] 플랫폼별 UI 가이드 준수 검토 (macOS, Windows)
+- [ ] 키보드 단축키 기획
+- [ ] 메뉴 구조 설계
 
-// Electron
-const fs = require('fs');
-fs.writeFileSync('/path/to/file.txt', 'content');
+### Phase 7: 보안 (Security)
+- [ ] Node.js API 직접 노출 금지 (contextBridge 사용)
+- [ ] 외부 URL 로드 시 보안 처리
+- [ ] 민감 데이터 저장 시 암호화 처리
 
-// Tauri
-await invoke('write_file', { path: '/path/to/file.txt', content: 'content' });
-```
-
-### System Integration
-
-```
-Things impossible on web but possible on desktop:
-- System tray icon
-- Global shortcuts
-- Native notifications
-- Drag and drop (file path access)
-- Full clipboard control
-- Native menus
-```
-
-### Offline Support
-
-```
-Web: Requires Service Worker, limited
-Desktop: Works offline by default
-
-⚠️ Server integration features must handle offline!
-```
-
----
-
-## Build & Deployment
-
-### Electron Build
-
-```yaml
-# electron-builder.yml
-appId: com.example.myapp
-productName: My App
-directories:
-  buildResources: resources
-files:
-  - '!**/.vscode/*'
-  - '!src/*'
-  - '!electron.vite.config.*'
-mac:
-  artifactName: ${name}-${version}-${arch}.${ext}
-  target:
-    - dmg
-    - zip
-  icon: resources/icon.icns
-win:
-  artifactName: ${name}-${version}-${arch}.${ext}
-  target:
-    - nsis
-  icon: resources/icon.ico
-linux:
-  target:
-    - AppImage
-    - deb
-```
-
-```bash
-# Execute build
-npm run build:mac
-npm run build:win
-npm run build:linux
-```
-
-### Auto-update
-
-```typescript
-// src/main/updater.ts
-import { autoUpdater } from 'electron-updater';
-
-autoUpdater.checkForUpdatesAndNotify();
-
-autoUpdater.on('update-available', () => {
-  // Notify update available
-});
-
-autoUpdater.on('update-downloaded', () => {
-  // Restart to apply update
-  autoUpdater.quitAndInstall();
-});
-```
-
-### Tauri Build
-
-```bash
-# Build for current platform
-npm run tauri build
-
-# Output locations
-# macOS: src-tauri/target/release/bundle/dmg/
-# Windows: src-tauri/target/release/bundle/msi/
-# Linux: src-tauri/target/release/bundle/appimage/
-```
-
----
-
-## Desktop PDCA Checklist
-
-### Phase 1: Schema
-```
-□ Decide local data storage method (SQLite, JSON file, etc.)
-□ Decide if cloud sync is needed
-```
-
-### Phase 3: Mockup
-```
-□ Consider platform-specific UI guidelines (macOS, Windows)
-□ Plan keyboard shortcuts
-□ Design menu structure
-```
-
-### Phase 6: UI
-```
-□ Support dark/light mode
-□ Handle window resizing
-□ Handle platform-specific UI differences (window control positions, etc.)
-```
-
-### Phase 7: Security
-```
-□ Don't expose Node.js APIs directly (use contextBridge)
-□ Security handling when loading external URLs
-□ Encrypt sensitive data storage
-```
-
-### Phase 9: Deployment
-```
-□ Code signing (macOS Notarization, Windows Signing)
-□ Set up auto-update
-□ App Store submission (if needed)
-```
-
----
-
-## Useful Libraries
-
-### Electron
-
-| Library | Purpose |
-|---------|---------|
-| electron-store | Local settings/data storage |
-| electron-updater | Auto-update |
-| electron-log | Logging |
-| better-sqlite3 | SQLite database |
-
-### Tauri
-
-| Library | Purpose |
-|---------|---------|
-| tauri-plugin-store | Settings storage |
-| tauri-plugin-sql | SQLite support |
-| tauri-plugin-log | Logging |
-| tauri-plugin-updater | Auto-update |
-
----
-
-## Requesting from Claude
-
-### Project Creation
-```
-"Set up a [app description] app project with Electron + React.
-- Use electron-vite
-- Support system tray
-- Set up auto-update"
-```
-
-### Feature Implementation
-```
-"Implement file open/save functionality.
-- Use native file dialogs
-- Save recent file list
-- Support drag and drop"
-```
-
-### Build Configuration
-```
-"Create electron-builder configuration.
-- macOS: DMG + notarization
-- Windows: NSIS installer
-- Auto-update server integration"
-```
+### Phase 9: 배포 (Deployment)
+- [ ] 코드 서명 (Code Signing - macOS 공증, Windows 서명)
+- [ ] 자동 업데이트 서버 설정
+- [ ] 앱 스토어 심사 준비 (필요 시)

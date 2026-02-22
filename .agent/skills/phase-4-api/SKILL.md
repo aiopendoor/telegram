@@ -1,16 +1,16 @@
 ---
 name: phase-4-api
 description: |
-  Skill for designing and implementing backend APIs.
-  Includes Zero Script QA methodology for validating APIs without test scripts.
+  백엔드 API를 설계하고 구현하는 스킬입니다.
+  테스트 스크립트 없이 API를 검증하는 제로 스크립트 QA 방법론을 포함합니다.
 
-  Use proactively when user needs to design or implement backend APIs.
+  백엔드 API 설계나 구현이 필요할 때 선제적으로 사용하십시오.
 
   Triggers: API design, REST API, backend, endpoint, API 설계, API設計, API设计,
   diseño de API, diseño API, diseño de backend, conception API, conception d'API, backend,
   API-Design, API-Entwurf, Backend, progettazione API, design API, backend
 
-  Do NOT use for: frontend-only projects, static websites, or Starter level projects.
+  Do NOT use for: 프론트엔드 전용 프로젝트, 정적 웹사이트 또는 스타터 레벨 프로젝트에는 사용하지 마십시오.
 imports:
   - ${PLUGIN_ROOT}/templates/pipeline/phase-4-api.template.md
   - ${PLUGIN_ROOT}/templates/shared/api-patterns.md
@@ -30,227 +30,88 @@ pdca-phase: do
 task-template: "[Phase-4] {feature}"
 ---
 
-# Phase 4: API Design/Implementation + Zero Script QA
+# Phase 4: API 설계/구현 + 제로 스크립트 QA
 
-> Backend API implementation and script-free QA
+> 백엔드 API 구현 및 스크립트 없는 품질 검증
 
-## Purpose
+## 프로젝트 목적
 
-Implement backend APIs that can store and retrieve data. Validate with structured logs instead of test scripts.
+데이터를 저장하고 불러올 수 있는 백엔드 API를 구현합니다. 테스트 코드를 짜는 대신 구조화된 로그를 통해 기능을 검증합니다.
 
-## What to Do in This Phase
+## 이 단계에서 할 일
 
-1. **API Design**: Define endpoints, requests/responses
-2. **API Implementation**: Write actual backend code
-3. **Zero Script QA**: Log-based validation
+1. **API 설계**: 엔드포인트(URL), 요청/응답 구조 정의
+2. **API 구현**: 실제 백엔드 코드 작성
+3. **제스크 QA (Zero Script QA)**: 로그 기반의 기능 검증
 
-## Deliverables
+## 결과물 (Deliverables)
 
 ```
 docs/02-design/
-└── api-spec.md             # API specification
+└── api-spec.md             # API 명세서
 
-src/api/                    # API implementation
+src/api/                    # API 구현 코드
 ├── routes/
 ├── controllers/
 └── services/
 
 docs/03-analysis/
-└── api-qa.md               # QA results
+└── api-qa.md               # QA 결과 보고서
 ```
-
-## PDCA Application
-
-- **Plan**: Define required API list
-- **Design**: Design endpoints, requests/responses
-- **Do**: Implement APIs
-- **Check**: Validate with Zero Script QA
-- **Act**: Fix bugs and proceed to Phase 5
-
-## Level-wise Application
-
-| Level | Application Method |
-|-------|-------------------|
-| Starter | Skip this Phase (no API) |
-| Dynamic | Use bkend.ai BaaS |
-| Enterprise | Implement APIs directly |
-
-## What is Zero Script QA?
-
-```
-Instead of writing test scripts, validate with structured debug logs
-
-[API] POST /api/users
-[INPUT] { "email": "test@test.com", "name": "Test" }
-[PROCESS] Email duplicate check → Passed
-[PROCESS] Password hash → Complete
-[PROCESS] DB save → Success
-[OUTPUT] { "id": 1, "email": "test@test.com" }
-[RESULT] ✅ Success
-
-Advantages:
-- Save test code writing time
-- See actual behavior with your eyes
-- Easy debugging
-```
-
-## RESTful API Principles
-
-### What is REST?
-
-**RE**presentational **S**tate **T**ransfer - an architecture style for designing web services.
-
-### 6 Core Principles
-
-| Principle | Description | Example |
-|-----------|-------------|---------|
-| **1. Client-Server** | Separation of concerns between client and server | UI ↔ Data storage separated |
-| **2. Stateless** | Each request is independent, server doesn't store client state | Auth token included with each request |
-| **3. Cacheable** | Responses must indicate if cacheable | `Cache-Control` header |
-| **4. Uniform Interface** | Interact through consistent interface | Detailed below |
-| **5. Layered System** | Allow layered system architecture | Load balancer, proxy |
-| **6. Code on Demand** | (Optional) Server can send code to client | JavaScript delivery |
-
-### Uniform Interface Details
-
-The core of RESTful APIs is a **uniform interface**.
-
-#### 1. Resource-Based URLs
-
-```
-✅ Good (nouns, plural)
-GET    /users          # User list
-GET    /users/123      # Specific user
-POST   /users          # Create user
-PUT    /users/123      # Update user
-DELETE /users/123      # Delete user
-
-❌ Bad (using verbs)
-GET    /getUsers
-POST   /createUser
-POST   /deleteUser/123
-```
-
-#### 2. HTTP Method Meanings
-
-| Method | Purpose | Idempotent | Safe |
-|--------|---------|:----------:|:----:|
-| `GET` | Read | ✅ | ✅ |
-| `POST` | Create | ❌ | ❌ |
-| `PUT` | Full update | ✅ | ❌ |
-| `PATCH` | Partial update | ❌ | ❌ |
-| `DELETE` | Delete | ✅ | ❌ |
-
-> **Idempotent**: Same result even if requested multiple times
-> **Safe**: Doesn't change server state
-
-#### 3. HTTP Status Codes
-
-```
-2xx Success
-├── 200 OK              # Success (read, update)
-├── 201 Created         # Creation success
-└── 204 No Content      # Success but no response body (delete)
-
-4xx Client Error
-├── 400 Bad Request     # Invalid request (validation failure)
-├── 401 Unauthorized    # Authentication required
-├── 403 Forbidden       # No permission
-├── 404 Not Found       # Resource not found
-└── 409 Conflict        # Conflict (duplicate, etc.)
-
-5xx Server Error
-├── 500 Internal Error  # Internal server error
-└── 503 Service Unavailable  # Service unavailable
-```
-
-#### 4. Consistent Response Format
-
-```json
-// Success response
-{
-  "data": {
-    "id": 123,
-    "email": "user@example.com",
-    "name": "John Doe"
-  },
-  "meta": {
-    "timestamp": "2026-01-08T10:00:00Z"
-  }
-}
-
-// Error response
-{
-  "error": {
-    "code": "VALIDATION_ERROR",
-    "message": "Email format is invalid.",
-    "details": [
-      { "field": "email", "message": "Please enter a valid email" }
-    ]
-  }
-}
-
-// List response (pagination)
-{
-  "data": [...],
-  "pagination": {
-    "page": 1,
-    "limit": 20,
-    "total": 100,
-    "totalPages": 5
-  }
-}
-```
-
-### URL Design Rules
-
-```
-1. Use lowercase
-   ✅ /users/123/orders
-   ❌ /Users/123/Orders
-
-2. Use hyphens (-), avoid underscores (_)
-   ✅ /user-profiles
-   ❌ /user_profiles
-
-3. Express hierarchical relationships
-   ✅ /users/123/orders/456
-
-4. Filtering via query parameters
-   ✅ /users?status=active&sort=created_at
-   ❌ /users/active/sort/created_at
-
-5. Version management
-   ✅ /api/v1/users
-   ✅ Header: Accept: application/vnd.api+json;version=1
-```
-
-### API Documentation Tools
-
-| Tool | Features |
-|------|----------|
-| **OpenAPI (Swagger)** | Industry standard, auto documentation |
-| **Postman** | Testing + documentation |
-| **Insomnia** | Lightweight API client |
 
 ---
 
-## API Design Checklist
+## 제로 스크립트 QA란?
 
-- [ ] **RESTful Principles Compliance**
-  - [ ] Resource-based URLs (nouns, plural)
-  - [ ] Appropriate HTTP methods
-  - [ ] Correct status codes
-- [ ] Unified error response format
-- [ ] Authentication/authorization method defined
-- [ ] Pagination method defined
-- [ ] Versioning method (optional)
+```
+테스트 코드를 작성하는 대신, 구조화된 디버그 로그를 통해 기능을 검증합니다.
 
-## Templates
+[API] POST /api/users
+[INPUT] { "email": "test@test.com", "name": "테스트" }
+[PROCESS] 이메일 중복 체크 → 통과
+[PROCESS] 비밀번호 해싱 → 완료
+[PROCESS] DB 저장 → 성공
+[OUTPUT] { "id": 1, "email": "test@test.com" }
+[RESULT] ✅ 성공
 
-- `templates/pipeline/phase-4-api.template.md`
-- `templates/pipeline/zero-script-qa.template.md`
+장점:
+- 테스트 코드 작성 시간 절약
+- 실제 동작 과정을 눈으로 확인 가능
+- 디버깅이 매우 용이함
+```
 
-## Next Phase
+---
 
-Phase 5: Design System → APIs are ready, now build UI components
+## RESTful API 설계 원칙
+
+### REST란?
+웹 서비스 설계 시 사용하는 아키텍처 스타일로, 자원(Resource)을 중심으로 인터페이스를 설계합니다.
+
+### 주요 설계 규칙
+
+#### 1. 자원 중심의 URL (Noun 위주)
+- ✅ 좋음: `GET /users`, `POST /products`
+- ❌ 나쁨: `GET /getUsers`, `POST /create-product`
+
+#### 2. HTTP 메서드의 적절한 사용
+| 메서드 | 용도 | 설명 |
+|--------|---------|------|
+| `GET` | 조회 | 데이터를 가져올 때 사용 |
+| `POST` | 생성 | 새로운 데이터를 생성할 때 사용 |
+| `PUT` | 전체 수정 | 기존 데이터를 완전히 교체할 때 사용 |
+| `PATCH` | 부분 수정 | 특정 필드만 수정할 때 사용 |
+| `DELETE` | 삭제 | 데이터를 삭제할 때 사용 |
+
+#### 3. 일관된 응답 상태 코드
+- `200 OK`: 요청 성공
+- `201 Created`: 생성 성공
+- `400 Bad Request`: 잘못된 요청 (입력값 오류 등)
+- `401 Unauthorized`: 인증 필요
+- `404 Not Found`: 존재하지 않는 자원
+- `500 Server Error`: 서버 내부 오류
+
+---
+
+## 다음 단계
+
+Phase 5: 디자인 시스템 → API가 준비되었으니, 이제 UI 컴포넌트 구축에 집중합니다.

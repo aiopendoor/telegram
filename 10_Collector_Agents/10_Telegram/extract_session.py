@@ -3,7 +3,7 @@ from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), "../../00_Core/.env"))
 
 API_ID = os.getenv("TELEGRAM_API_ID")
 API_HASH = os.getenv("TELEGRAM_API_HASH")

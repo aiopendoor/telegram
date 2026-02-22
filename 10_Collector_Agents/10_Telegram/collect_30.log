@@ -1,0 +1,127 @@
+🚀 신규 채널 초기 30개 '날짜순 정렬' 수집을 시작합니다.
+🔍 [KISGregKim] 초기화 시도 중...
+📑 [KISGregKim] 이터레이터 생성 중...
+📥 [KISGregKim] 첫 메시지 로드 시도 중...
+✅ [KISGregKim] 초기화 성공 (첫 메시지 날짜: 2018-07-25 01:53:05+00:00)
+🔍 [globaletfi] 초기화 시도 중...
+📑 [globaletfi] 이터레이터 생성 중...
+📥 [globaletfi] 첫 메시지 로드 시도 중...
+✅ [globaletfi] 초기화 성공 (첫 메시지 날짜: 2020-09-24 00:27:09+00:00)
+🔍 [darthacking] 초기화 시도 중...
+📑 [darthacking] 이터레이터 생성 중...
+📥 [darthacking] 첫 메시지 로드 시도 중...
+✅ [darthacking] 초기화 성공 (첫 메시지 날짜: 2021-02-17 02:20:10+00:00)
+🔍 [bornlupin] 초기화 시도 중...
+📑 [bornlupin] 이터레이터 생성 중...
+📥 [bornlupin] 첫 메시지 로드 시도 중...
+✅ [bornlupin] 초기화 성공 (첫 메시지 날짜: 2022-05-23 01:59:23+00:00)
+🔍 [easobi] 초기화 시도 중...
+📑 [easobi] 이터레이터 생성 중...
+📥 [easobi] 첫 메시지 로드 시도 중...
+✅ [easobi] 초기화 성공 (첫 메시지 날짜: 2023-12-04 06:03:44+00:00)
+🔍 [quantmalgo] 초기화 시도 중...
+📑 [quantmalgo] 이터레이터 생성 중...
+📥 [quantmalgo] 첫 메시지 로드 시도 중...
+✅ [quantmalgo] 초기화 성공 (첫 메시지 날짜: 2024-12-25 11:12:13+00:00)
+🔍 [free_life59] 초기화 시도 중...
+📑 [free_life59] 이터레이터 생성 중...
+📥 [free_life59] 첫 메시지 로드 시도 중...
+✅ [free_life59] 초기화 성공 (첫 메시지 날짜: 2022-08-07 05:58:05+00:00)
+🔍 [insidertracking] 초기화 시도 중...
+📑 [insidertracking] 이터레이터 생성 중...
+📥 [insidertracking] 첫 메시지 로드 시도 중...
+✅ [insidertracking] 초기화 성공 (첫 메시지 날짜: 2024-09-06 13:11:30+00:00)
+🔍 [tambangwang] 초기화 시도 중...
+📑 [tambangwang] 이터레이터 생성 중...
+📥 [tambangwang] 첫 메시지 로드 시도 중...
+✅ [tambangwang] 초기화 성공 (첫 메시지 날짜: 2024-11-03 07:21:16+00:00)
+🔍 [Macrojunglemicrolens] 초기화 시도 중...
+📑 [Macrojunglemicrolens] 이터레이터 생성 중...
+📥 [Macrojunglemicrolens] 첫 메시지 로드 시도 중...
+✅ [Macrojunglemicrolens] 초기화 성공 (첫 메시지 날짜: 2022-03-18 11:43:35+00:00)
+🔍 [cahier_de_market] 초기화 시도 중...
+📑 [cahier_de_market] 이터레이터 생성 중...
+📥 [cahier_de_market] 첫 메시지 로드 시도 중...
+✅ [cahier_de_market] 초기화 성공 (첫 메시지 날짜: 2022-10-26 10:43:30+00:00)
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔥 프로그램 실행 중 치명적 오류 발생: attempt to write a readonly database
+Traceback (most recent call last):
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 10, [KISGregKim] 수집: 20/30
+🔄 진행 중... 힙 크기: 9, [globaletfi] 수집: 0/30
+🔄 진행 중... 힙 크기: 9, [globaletfi] 수집: 0/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 9, [globaletfi] 수집: 10/30
+🔄 진행 중... 힙 크기: 9, [globaletfi] 수집: 20/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 8, [darthacking] 수집: 0/30
+🔄 진행 중... 힙 크기: 8, [darthacking] 수집: 0/30
+🔄 진행 중... 힙 크기: 8, [darthacking] 수집: 10/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 8, [darthacking] 수집: 20/30
+🔄 진행 중... 힙 크기: 7, [Macrojunglemicrolens] 수집: 0/30
+🔄 진행 중... 힙 크기: 7, [Macrojunglemicrolens] 수집: 0/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 7, [Macrojunglemicrolens] 수집: 10/30
+🔄 진행 중... 힙 크기: 7, [Macrojunglemicrolens] 수집: 20/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 6, [bornlupin] 수집: 0/30
+🔄 진행 중... 힙 크기: 6, [bornlupin] 수집: 0/30
+🔄 진행 중... 힙 크기: 6, [bornlupin] 수집: 10/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 6, [bornlupin] 수집: 20/30
+🔄 진행 중... 힙 크기: 5, [free_life59] 수집: 0/30
+🔄 진행 중... 힙 크기: 5, [free_life59] 수집: 0/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 5, [free_life59] 수집: 10/30
+🔄 진행 중... 힙 크기: 5, [free_life59] 수집: 20/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 4, [cahier_de_market] 수집: 0/30
+🔄 진행 중... 힙 크기: 4, [cahier_de_market] 수집: 0/30
+🔄 진행 중... 힙 크기: 4, [cahier_de_market] 수집: 10/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 4, [cahier_de_market] 수집: 20/30
+🔄 진행 중... 힙 크기: 3, [easobi] 수집: 0/30
+🔄 진행 중... 힙 크기: 3, [easobi] 수집: 0/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 3, [easobi] 수집: 10/30
+🔄 진행 중... 힙 크기: 3, [easobi] 수집: 20/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 2, [insidertracking] 수집: 0/30
+🔄 진행 중... 힙 크기: 2, [insidertracking] 수집: 0/30
+🔄 진행 중... 힙 크기: 2, [insidertracking] 수집: 10/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 2, [insidertracking] 수집: 20/30
+🔄 진행 중... 힙 크기: 1, [tambangwang] 수집: 0/30
+🔄 진행 중... 힙 크기: 1, [tambangwang] 수집: 0/30
+🔄 진행 중... 힙 크기: 1, [tambangwang] 수집: 0/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 1, [tambangwang] 수집: 10/30
+🔄 진행 중... 힙 크기: 1, [tambangwang] 수집: 20/30
+📤 20개 메시지 번들 전송 완료 (정렬 중...)
+🔄 진행 중... 힙 크기: 0, [quantmalgo] 수집: 0/30
+🔄 진행 중... 힙 크기: 0, [quantmalgo] 수집: 0/30
+🔄 진행 중... 힙 크기: 0, [quantmalgo] 수집: 0/30
+🏁 [QuantM Algo] 채널 종료 (총 3개 수집)
+📤 마지막 3개 메시지 전송 완료.
+
+📊 최종 수집 현황:
+- KISGregKim: 30개
+- globaletfi: 30개
+- darthacking: 30개
+- bornlupin: 30개
+- easobi: 30개
+- quantmalgo: 3개
+- free_life59: 30개
+- insidertracking: 30개
+- tambangwang: 30개
+- Macrojunglemicrolens: 30개
+- cahier_de_market: 30개
+작업 완료!
+💾 체크포인트가 저장되었습니다.
+elf._save_states_and_entities()
+  File "/Users/musuj/Library/Python/3.9/lib/python/site-packages/telethon/client/telegrambaseclient.py", line 701, in _save_states_and_entities
+    self.session.process_entities(
+  File "/Users/musuj/Library/Python/3.9/lib/python/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
+    c.executemany(
+sqlite3.OperationalError: attempt to write a readonly database

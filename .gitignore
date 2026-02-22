@@ -38,3 +38,13 @@ venv.bak/
 # Project Specific
 docs/0*
 !docs/README.md
+
+# Secrets and Configs
+.env.master
+client_secrets.json
+token.json
+mcp_config.json
+*.session
+*.session-journal
+
+

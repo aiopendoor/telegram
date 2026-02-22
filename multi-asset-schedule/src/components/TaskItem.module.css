@@ -1,0 +1,122 @@
+.taskItem {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid #f5f5f5;
+  transition: background-color 0.2s ease;
+}
+
+.taskItem:hover {
+  background-color: var(--color-gray-50);
+}
+
+.taskItem.completed {
+  opacity: 0.7;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid var(--color-gray-300);
+  border-radius: 4px;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+
+.checkbox:checked+.checkmark {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkbox:checked+.checkmark::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.description {
+  flex: 1;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.completed .description {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.metadata {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: 2rem;
+  font-size: var(--text-xs);
+}
+
+.priority {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: var(--font-medium);
+}
+
+.priority.high {
+  background-color: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.priority.medium {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.priority.low {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+.completedTime {
+  color: var(--text-secondary);
+}
+.deleteButton {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    align-self: flex-start;
+    line-height: 1;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.taskItem:hover .deleteButton {
+    opacity: 1;
+}
+
+.deleteButton:hover {
+    color: #ef4444;
+}

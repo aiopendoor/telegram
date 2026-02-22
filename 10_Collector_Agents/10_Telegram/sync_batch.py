@@ -9,7 +9,7 @@ from telethon.sessions import StringSession
 from telethon.tl.types import MessageMediaWebPage
 
 # .env 로드
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), "../../00_Core/.env"))
 
 # 환경 변수 및 설정
 API_ID = int(os.getenv("TELEGRAM_API_ID"))

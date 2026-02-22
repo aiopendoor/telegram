@@ -1,14 +1,13 @@
 ---
 name: enterprise
 description: |
-  Enterprise-grade system development with microservices, Kubernetes, and Terraform.
-  Includes AI Native methodology and Monorepo architecture patterns.
-  Handles high traffic, high availability, and complex architecture requirements.
+  마이크로서비스, 쿠버네티스, 테라폼을 활용한 엔터프라이즈급 시스템 개발 스킬입니다.
+  AI 네이티브 방법론과 모노레포 아키텍처 패턴을 포함합니다.
+  고트래픽, 고가용성 및 복잡한 아키텍처 요구사항을 처리합니다.
 
-  Project initialization with "init enterprise" or "enterprise init".
+  "init enterprise" 또는 "enterprise init" 명령어로 프로젝트를 시작하십시오.
 
-  Use proactively when user needs high traffic, microservices, custom infrastructure,
-  or AI-native development patterns.
+  사용자가 고트래픽, 마이크로서비스, 사용자 정의 인프라 또는 AI 네이티브 개발 패턴이 필요할 때 선제적으로 사용하십시오.
 
   Triggers: microservices, kubernetes, terraform, k8s, AWS, monorepo, AI native, 10-day,
   init enterprise, enterprise init,
@@ -18,7 +17,7 @@ description: |
   Microservices, Unternehmensstrategie, Architektur, CTO, KI-nativ,
   microservizi, strategia aziendale, architettura, CTO, AI nativo
 
-  Do NOT use for: simple websites, MVPs, or projects without infrastructure requirements.
+  Do NOT use for: 단순한 웹사이트, MVP 또는 인프라 요구사항이 없는 프로젝트에는 사용하지 마십시오.
 argument-hint: "[init|guide|help]"
 agents:
   default: bkit:enterprise-expert
@@ -41,55 +40,48 @@ pdca-phase: plan
 task-template: "[Init-Enterprise] {feature}"
 ---
 
-# Advanced (Enterprise) Skill
+# 고급 (Enterprise) 스킬 가이드
 
-## Actions
+## 제공 액션 (Actions)
 
-| Action | Description | Example |
+| 액션 | 설명 | 예시 |
 |--------|-------------|---------|
-| `init` | Project initialization (/init-enterprise feature) | `/enterprise init my-platform` |
-| `guide` | Display development guide | `/enterprise guide` |
-| `help` | MSA/Infrastructure help | `/enterprise help` |
+| `init` | 프로젝트 초기화 (/init-enterprise 기능) | `/enterprise init my-platform` |
+| `guide` | 개발 가이드 표시 | `/enterprise guide` |
+| `help` | MSA/인프라 도움말 | `/enterprise help` |
 
-### init (Project Initialization)
-1. Create Turborepo monorepo structure
-2. apps/, packages/, services/, infra/ folder structure
-3. Create CLAUDE.md (Level: Enterprise specified)
-4. docs/ 5-category structure
-5. infra/terraform/, infra/k8s/ base templates
-6. Initialize .bkit-memory.json
+### init (프로젝트 초기화)
+1. Turborepo 모노레포 구조 생성
+2. apps/, packages/, services/, infra/ 폴더 구조 구축
+3. CLAUDE.md 생성 (엔터프라이즈 프로젝트 레벨 명시)
+4. docs/ 5개 카테고리 구조 생성
+5. infra/terraform/, infra/k8s/ 기본 템플릿 생성
+6. .bkit-memory.json 초기화
 
-### guide (Development Guide)
-- AI Native 10-Day development cycle
-- Microservices architecture patterns
-- Phase 1-9 full Pipeline (Enterprise version)
+### guide (개발 가이드)
+- AI 네이티브 10일 개발 사이클 안내
+- 마이크로서비스 아키텍처 패턴 가이드
+- Phase 1-9 전체 파이프라인 (고급 버전)
 
-### help (Infrastructure Help)
-- Kubernetes basic concepts
-- Terraform IaC patterns
-- AWS EKS, RDS configuration guide
+### help (인프라 도움말)
+- 쿠버네티스 기본 개념 설명
+- 테라폼 IaC(Infrastructure as Code) 패턴
+- AWS EKS, RDS 설정 가이드
 
-## Target Audience
-
-- Senior developers
-- CTOs / Architects
-- Large-scale system operators
-
-## Tech Stack
+## 기술 스택 (Tech Stack)
 
 ```
 Frontend:
-- Next.js 14+ (Turborepo monorepo)
+- Next.js 14+ (Turborepo 모노레포)
 - TypeScript
 - Tailwind CSS
-- TanStack Query
-- Zustand
+- TanStack Query / Zustand
 
 Backend:
-- Python FastAPI (microservices)
-- PostgreSQL (schema separation)
-- Redis (cache, Pub/Sub)
-- RabbitMQ / SQS (message queue)
+- Python FastAPI (마이크로서비스)
+- PostgreSQL (스키마 분리)
+- Redis (캐시, Pub/Sub)
+- RabbitMQ / SQS (메시지 큐)
 
 Infrastructure:
 - AWS (EKS, RDS, S3, CloudFront)
@@ -102,298 +94,38 @@ CI/CD:
 - Docker
 ```
 
-### Language Tier Guidance (v1.3.0)
-
-> **Supported**: All Tiers
->
-> Enterprise level handles complex requirements including legacy system integration.
-
-| Tier | Usage | Guidance |
-|------|-------|----------|
-| Tier 1 | Primary services | New development, core features |
-| Tier 2 | System/Cloud | Go (K8s), Rust (performance critical) |
-| Tier 3 | Platform native | iOS (Swift), Android (Kotlin), legacy Java |
-| Tier 4 | Legacy integration | Migration plan required |
-
-**Migration Path**:
-- PHP → TypeScript (Next.js API routes)
-- Ruby → Python (FastAPI)
-- Java → Kotlin or Go
-
-## Project Structure
-
-```
-project/
-├── apps/                        # Frontend apps (Turborepo)
-│   ├── web/                    # Main web app
-│   ├── admin/                  # Admin
-│   └── docs/                   # Documentation site
-│
-├── packages/                    # Shared packages
-│   ├── ui/                     # UI components
-│   ├── api-client/             # API client
-│   └── config/                 # Shared config
-│
-├── services/                    # Backend microservices
-│   ├── auth/                   # Auth service
-│   ├── user/                   # User service
-│   ├── {domain}/               # Domain-specific services
-│   └── shared/                 # Shared modules
-│
-├── infra/                       # Infrastructure code
-│   ├── terraform/
-│   │   ├── modules/            # Reusable modules
-│   │   └── environments/       # Environment-specific config
-│   └── k8s/
-│       ├── base/               # Common manifests
-│       └── overlays/           # Environment-specific patches
-│
-├── docs/                        # PDCA documents
-│   ├── 00-requirement/
-│   ├── 01-development/         # Design documents (multiple)
-│   ├── 02-scenario/
-│   ├── 03-refactoring/
-│   └── 04-operation/
-│
-├── scripts/                     # Utility scripts
-├── .github/workflows/           # CI/CD
-├── docker-compose.yml
-├── turbo.json
-└── pnpm-workspace.yaml
-```
-
-## Clean Architecture (4-Layer)
+## 클린 아키텍처 (4-Layer)
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    API Layer                             │
-│  - FastAPI routers                                       │
-│  - Request/Response DTOs                                 │
-│  - Auth/authz middleware                                 │
+│                    API Layer  (Router)                   │
 ├─────────────────────────────────────────────────────────┤
-│                  Application Layer                       │
-│  - Service classes                                       │
-│  - Use Case implementation                               │
-│  - Transaction management                                │
+│                  Application Layer (Service)             │
 ├─────────────────────────────────────────────────────────┤
-│                    Domain Layer                          │
-│  - Entity classes (pure Python)                          │
-│  - Repository interfaces (ABC)                           │
-│  - Business rules                                        │
+│                    Domain Layer (Entity)                 │
 ├─────────────────────────────────────────────────────────┤
-│                 Infrastructure Layer                     │
-│  - Repository implementations (SQLAlchemy)               │
-│  - External API clients                                  │
-│  - Cache, messaging                                      │
+│                 Infrastructure Layer (Repo)              │
 └─────────────────────────────────────────────────────────┘
-
-Dependency direction: Top → Bottom
-Domain Layer depends on nothing
+의존성 방향: 위 → 아래 (Domain Layer는 아무것도 의존하지 않음)
 ```
 
-## Core Patterns
+## AI 네이티브 개발 (AI Native Development)
 
-### Repository Pattern
+### 3대 핵심 원칙
+1. **문서 기반 설계 (Document-First)**: 코드 작성 전 설계 문서를 먼저 작성
+2. **모노레포 컨텍스트 관리**: AI의 문맥 파악을 위해 모든 코드를 하나의 리포지토리에 보관
+3. **PR 기반 협업**: 모든 변경 사항은 Pull Request를 통해 진행
 
-```python
-# domain/repositories/user_repository.py (interface)
-from abc import ABC, abstractmethod
+### 10일 개발 패턴 (10-Day Development)
+- **1일차**: 아키텍처 설계 (시장 분석 + 시스템 설계)
+- **2-3일차**: 코어 구축 (인증, 사용자 + 비즈니스 서비스)
+- **4-5일차**: UX 구현 (피드백 반영 → 문서화 → 구현)
+- **6-7일차**: QA 진행 (제로 스크립트 QA + 버그 수정)
+- **8일차**: 인프라 구축 (Terraform + GitOps)
+- **9-10일차**: 프로덕션 배포 (보안 검토 + 정식 배포)
 
-class UserRepository(ABC):
-    @abstractmethod
-    async def find_by_id(self, id: str) -> User | None:
-        pass
-
-    @abstractmethod
-    async def save(self, user: User) -> User:
-        pass
-
-# infrastructure/repositories/user_repository_impl.py (implementation)
-class UserRepositoryImpl(UserRepository):
-    def __init__(self, db: AsyncSession):
-        self.db = db
-
-    async def find_by_id(self, id: str) -> User | None:
-        result = await self.db.execute(
-            select(UserModel).where(UserModel.id == id)
-        )
-        return result.scalar_one_or_none()
-```
-
-### Inter-service Communication
-
-```python
-# Synchronous (Internal API)
-async def get_user_info(user_id: str) -> dict:
-    async with httpx.AsyncClient() as client:
-        response = await client.get(
-            f"{USER_SERVICE_URL}/internal/users/{user_id}",
-            headers={"X-Internal-Token": INTERNAL_TOKEN}
-        )
-        return response.json()
-
-# Asynchronous (message queue)
-await message_queue.publish(
-    topic="user.created",
-    message={"user_id": user.id, "email": user.email}
-)
-```
-
-### Terraform Module
-
-```hcl
-# modules/eks/main.tf
-resource "aws_eks_cluster" "this" {
-  name     = "${var.environment}-${var.project_name}-eks"
-  role_arn = aws_iam_role.cluster.arn
-  version  = var.kubernetes_version
-
-  vpc_config {
-    subnet_ids = var.subnet_ids
-  }
-
-  tags = merge(var.tags, {
-    Environment = var.environment
-  })
-}
-```
-
-### Kubernetes Deployment
-
-```yaml
-# k8s/base/backend/deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: user-service
-spec:
-  replicas: 2
-  template:
-    spec:
-      containers:
-        - name: user-service
-          image: ${ECR_REGISTRY}/user-service:${TAG}
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "256Mi"
-            limits:
-              cpu: "500m"
-              memory: "512Mi"
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8000
-```
-
-## Environment Configuration
-
-| Environment | Infrastructure | Deployment Method |
-|-------------|---------------|-------------------|
-| Local | Docker Compose | Manual |
-| Staging | EKS | ArgoCD Auto Sync |
-| Production | EKS | ArgoCD Manual Sync |
-
-## Security Rules
-
-```
-✅ Allowed
-- Retrieve secrets from Secrets Manager
-- IAM role-based access
-- VPC internal communication
-- mTLS (inter-service)
-
-❌ Prohibited
-- Hardcoded secrets
-- DB in public subnet
-- Using root account
-- Excessive IAM permissions
-```
-
-## CI/CD Pipeline
-
-```
-Push to feature/*
-    ↓
-GitHub Actions (CI)
-    - Lint
-    - Test
-    - Build Docker image
-    - Push to ECR
-    ↓
-PR to staging
-    ↓
-ArgoCD Auto Sync (Staging)
-    ↓
-PR to main
-    ↓
-ArgoCD Manual Sync (Production)
-```
-
-## SoR Priority
-
-```
-1st Priority: Codebase
-  - scripts/init-db.sql (source of truth for DB schema)
-  - services/{service}/app/ (each service implementation)
-
-2nd Priority: CLAUDE.md / Convention docs
-  - services/CLAUDE.md
-  - frontend/CLAUDE.md
-  - infra/CLAUDE.md
-
-3rd Priority: docs/ design documents
-  - For understanding design intent
-  - If different from code, code is correct
-```
-
----
-
-## AI Native Development
-
-### 3 Core Principles
-
-1. **Document-First Design**: Write design docs BEFORE code
-2. **Monorepo Context Control**: All code in one repo for AI context
-3. **PR-Based Collaboration**: Every change through PR
-
-### 10-Day Development Pattern
-
-| Day | Focus | Output |
-|-----|-------|--------|
-| 1 | Architecture | Market analysis + System architecture |
-| 2-3 | Core | Auth, User + Business services |
-| 4-5 | UX | PO feedback → Documentation → Implementation |
-| 6-7 | QA | Zero Script QA + bug fixes |
-| 8 | Infra | Terraform + GitOps |
-| 9-10 | Production | Security review + Deployment |
-
----
-
-## Monorepo Benefits for AI
-
-```
-Mono-repo:
-└─ project/
-    ├─ frontend/ ──────┐
-    ├─ services/ ──────┤  AI reads completely
-    ├─ infra/ ─────────┤  Context unified
-    └─ packages/ ──────┘
-
-✅ AI understands full context
-✅ Single source of truth for types
-✅ Atomic commits across layers
-✅ Consistent patterns enforced
-```
-
-### CLAUDE.md Hierarchy
-
-```
-project/
-├── CLAUDE.md           # Project-wide context
-├── frontend/CLAUDE.md  # Frontend conventions
-├── services/CLAUDE.md  # Backend conventions
-└── infra/CLAUDE.md     # Infra conventions
-```
-
-Rule: Area-specific CLAUDE.md overrides project-level rules
+## 모노레포의 장점 (AI 활용 측면)
+- AI가 전체 컨텍스트를 한 번에 이해 가능
+- 타입 코드의 단일 진실원(SoR) 확보
+- 여러 계층에 걸친 원자적(Atomic) 커밋 가능
+- 일관된 개발 패턴 강제

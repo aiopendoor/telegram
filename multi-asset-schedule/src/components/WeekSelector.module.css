@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-secondary);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab:hover {
+    background-color: var(--color-gray-100);
+}
+
+.tab.active {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary);
+}
+
+.label {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+}
+
+.tab.active .label {
+    color: var(--color-primary);
+}
+
+.dateRange {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .tab {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

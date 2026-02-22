@@ -31,12 +31,14 @@ jobs:
           TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+        working-directory: 10_Collector_Agents/10_Telegram
         run: python sync_history.py
 
       - name: Commit and Push Checkpoints
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add last_processed_ids.json
+          git add 10_Collector_Agents/10_Telegram/last_processed_ids.json
           git commit -m "chore: update history sync checkpoints [skip ci]" || echo "No changes to commit"
           git push
+

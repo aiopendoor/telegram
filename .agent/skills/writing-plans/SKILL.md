@@ -1,116 +1,80 @@
 ---
 name: writing-plans
-description: Use when you have a spec or requirements for a multi-step task, before touching code
+description: 다단계 작업에 대한 사양이나 요구사항이 있을 때, 코드를 건드리기 전에 사용하는 스킬입니다.
 ---
 
-# Writing Plans
+# 구현 계획 수립 (Writing Plans)
 
-## Overview
+## 개요
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+이 코드베이스에 대한 문맥이 전혀 없는 엔지니어를 위해 상세한 구현 계획을 작성하십시오. 각 작업에서 수정해야 할 파일, 테스트 방법, 문서 확인 사항 등을 문서화합니다. 작업을 한 번에 2~5분 내에 수행할 수 있는 "한 입 크기(Bite-sized)"로 쪼개는 것이 핵심입니다.
 
-Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
+**시작 선언:** "구현 계획을 수립하기 위해 writing-plans 스킬을 사용합니다."라고 알리십시오.
 
-**Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
+**문서 저장 경로:** `docs/plans/YYYY-MM-DD-<기능명>.md`
 
-**Context:** This should be run in a dedicated worktree (created by brainstorming skill).
+## 작업의 세분화 (Granularity)
 
-**Save plans to:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
+각 단계는 하나의 구체적인 액션이어야 합니다:
+1. **실패하는 테스트 작성** - 단계
+2. **실패 확인** - 단계
+3. **최소한의 구현** - 단계
+4. **테스트 통과 확인** - 단계
+5. **커밋(Commit)** - 단계
 
-## Bite-Sized Task Granularity
+## 계획 문서 헤더
 
-**Each step is one action (2-5 minutes):**
-- "Write the failing test" - step
-- "Run it to make sure it fails" - step
-- "Implement the minimal code to make the test pass" - step
-- "Run the tests and make sure they pass" - step
-- "Commit" - step
-
-## Plan Document Header
-
-**Every plan MUST start with this header:**
+모든 계획은 다음 헤더로 시작해야 합니다:
 
 ```markdown
-# [Feature Name] Implementation Plan
+# [기능명] 구현 계획
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> **Claude에게**: 필수 서브 스킬인 superpowers:executing-plans를 사용하여 이 계획을 작업별로 구현하십시오.
 
-**Goal:** [One sentence describing what this builds]
-
-**Architecture:** [2-3 sentences about approach]
-
-**Tech Stack:** [Key technologies/libraries]
+**목표**: [무엇을 만드는지 한 문장으로 요약]
+**아키텍처**: [접근 방식에 대한 2-3문장 설명]
+**기술 스택**: [주요 기술 및 라이브러리]
 
 ---
 ```
 
-## Task Structure
+## 작업 구조 (Task Structure)
 
 ```markdown
-### Task N: [Component Name]
+### 작업 N: [컴포넌트 명]
 
-**Files:**
-- Create: `exact/path/to/file.py`
-- Modify: `exact/path/to/existing.py:123-145`
-- Test: `tests/exact/path/to/test.py`
+**관련 파일**:
+- 생성: `경로/파일.py`
+- 수정: `기존/파일.py:라인번호`
+- 테스트: `테스트/경로/파일.py`
 
-**Step 1: Write the failing test**
+**1단계: 실패하는 테스트 작성**
+[구체적인 테스트 코드]
 
-```python
-def test_specific_behavior():
-    result = function(input)
-    assert result == expected
+**2단계: 테스트 실패 확인**
+실행 명령어 및 기대 결과
+
+**3단계: 최소 구현**
+[구체적인 구현 코드]
+
+**4단계: 테스트 통과 확인**
+실행 명령어 및 기대 결과
+
+**5단계: 커밋**
+`git add ...` 및 `git commit -m "feat: ..."`
 ```
 
-**Step 2: Run test to verify it fails**
+## 실행 위임 (Execution Handoff)
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: FAIL with "function not defined"
+계획 저장이 완료되면 사용자에게 다음 두 가지 실행 옵션을 제안하십시오:
 
-**Step 3: Write minimal implementation**
+1. **서브 에이전트 기반 (현재 세션)**: 작업당 신규 서브 에이전트 할당, 작업 간 리뷰 진행, 빠른 반복.
+2. **병렬 세션 (별도 세션)**: 새 세션에서 `executing-plans` 사용, 체크포인트 기반의 배치 실행.
 
-```python
-def function(input):
-    return expected
-```
+---
 
-**Step 4: Run test to verify it passes**
-
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: PASS
-
-**Step 5: Commit**
-
-```bash
-git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
-```
-```
-
-## Remember
-- Exact file paths always
-- Complete code in plan (not "add validation")
-- Exact commands with expected output
-- Reference relevant skills with @ syntax
-- DRY, YAGNI, TDD, frequent commits
-
-## Execution Handoff
-
-After saving the plan, offer execution choice:
-
-**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
-
-**1. Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
-
-**2. Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
-
-**Which approach?"**
-
-**If Subagent-Driven chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
-- Stay in this session
-- Fresh subagent per task + code review
-
-**If Parallel Session chosen:**
-- Guide them to open new session in worktree
-- **REQUIRED SUB-SKILL:** New session uses superpowers:executing-plans
+## 기억할 사항
+- 항상 **절대 경로**를 사용하십시오.
+- "유효성 검사 추가"와 같은 모호한 말 대신 **완전한 코드**를 계획에 포함하십시오.
+- 실행 명령어와 예상 출력을 명시하십시오.
+- DRY, YAGNI, TDD, 잦은 커밋 원칙을 준수하십시오.
