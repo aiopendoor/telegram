@@ -6,7 +6,7 @@
 
 **Architecture:** RAG pipeline with 7 stages: Preprocess → Deduplicate → Context Retrieval → LLM Processing → Taxonomy Assignment → Supabase Storage → Obsidian Sync. Uses Vector DB (Qdrant) for semantic search, Supabase as source of truth, Obsidian as view layer.
 
-**Tech Stack:** Python 3.11+, Telethon, Qdrant, OpenAI Embeddings, Claude/Gemini LLM, Supabase, pytest
+**Tech Stack:** Python 3.11+, Telethon, Qdrant, OpenAI Embeddings, Gemini LLM, Supabase, pytest
 
 ---
 
@@ -27,7 +27,7 @@ QDRANT_PORT=6333
 OPENAI_API_KEY=your_openai_key
 
 # LLM
-ANTHROPIC_API_KEY=your_claude_key
+GOOGLE_API_KEY=your_gemini_key
 
 # Supabase
 SUPABASE_URL=your_supabase_url
@@ -86,7 +86,7 @@ telethon==1.34.0
 python-dotenv==1.0.0
 qdrant-client==1.7.0
 openai==1.10.0
-anthropic==0.18.0
+google-generativeai==0.3.2
 supabase==2.3.0
 pytest==7.4.0
 pytest-asyncio==0.21.0
@@ -836,18 +836,18 @@ Expected: FAIL
 # components/llm_processor.py
 import os
 import json
-from anthropic import Anthropic
+import google.generativeai as genai
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class LLMProcessor:
     def __init__(self):
-        self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        self.model = "claude-sonnet-4-5-20250929"
+        genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+        self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
 
     def process_with_context(self, message: str, context: dict) -> dict:
-        """Process message with RAG context using Claude"""
+        """Process message with RAG context using Gemini"""
 
         # Build context string
         related_context = "\n".join([
@@ -880,7 +880,7 @@ class LLMProcessor:
    - 30_Society_Culture: 사회와 문화
 
 2. **title**: 노트 제목 (10자 이내)
-3. **summary**: 3줄 요약 (각 줄은 한 문장)
+3. **summary**: 3줄 요약 (리스트 형식: ["첫째 줄", "둘째 줄", "셋째 줄"])
 4. **entities**: 엔티티 추출
    - locations: 지역명 리스트
    - organizations: 기업/기관명 리스트
@@ -889,31 +889,35 @@ class LLMProcessor:
 6. **gravity_score**: 감성 점수 (-1.0 ~ +1.0)
 7. **suggested_path**: 추천 폴더 경로 (예: "거래동향/강남구")
 
-JSON만 반환하세요."""
+반드시 유효한 JSON만 반환하세요. 다른 텍스트는 포함하지 마세요."""
 
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=2000,
-            messages=[{"role": "user", "content": prompt}]
-        )
+        response = self.model.generate_content(prompt)
 
         # Parse JSON from response
-        content = response.content[0].text
-        result = json.loads(content)
+        text = response.text.strip()
+        # Remove markdown code blocks if present
+        if text.startswith('```json'):
+            text = text[7:]
+        if text.startswith('```'):
+            text = text[3:]
+        if text.endswith('```'):
+            text = text[:-3]
+        text = text.strip()
 
+        result = json.loads(text)
         return result
 ```
 
 **Step 4: Run test to verify it passes**
 
 Run: `pytest tests/test_llm_processor.py -v`
-Expected: PASS (requires ANTHROPIC_API_KEY)
+Expected: PASS (requires GOOGLE_API_KEY)
 
 **Step 5: Commit**
 
 ```bash
 git add components/llm_processor.py tests/test_llm_processor.py
-git commit -m "feat: add context-aware LLM processor with Claude"
+git commit -m "feat: add context-aware LLM processor with Gemini"
 ```
 
 ---
@@ -969,15 +973,15 @@ import os
 import json
 import yaml
 from pathlib import Path
-from anthropic import Anthropic
+import google.generativeai as genai
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class TaxonomyAgent:
     def __init__(self):
-        self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        self.model = "claude-sonnet-4-5-20250929"
+        genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+        self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
         self.vault_path = os.getenv("OBSIDIAN_VAULT_PATH")
         self.load_taxonomy()
 
@@ -1037,15 +1041,23 @@ JSON 형식으로 반환:
   "reasoning": "결정 이유"
 }}
 
-path는 Area명을 포함한 전체 경로여야 합니다."""
+path는 Area명을 포함한 전체 경로여야 합니다.
+반드시 유효한 JSON만 반환하세요. 다른 텍스트는 포함하지 마세요."""
 
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=1000,
-            messages=[{"role": "user", "content": prompt}]
-        )
+        response = self.model.generate_content(prompt)
 
-        result = json.loads(response.content[0].text)
+        # Parse JSON from response
+        text = response.text.strip()
+        # Remove markdown code blocks if present
+        if text.startswith('```json'):
+            text = text[7:]
+        if text.startswith('```'):
+            text = text[3:]
+        if text.endswith('```'):
+            text = text[:-3]
+        text = text.strip()
+
+        result = json.loads(text)
 
         # Create folders if needed
         if result.get("created_folders"):
@@ -1512,7 +1524,7 @@ QDRANT_HOST=localhost
 QDRANT_PORT=6333
 
 OPENAI_API_KEY=your_openai_key
-ANTHROPIC_API_KEY=your_claude_key
+GOOGLE_API_KEY=your_gemini_key
 
 OBSIDIAN_VAULT_PATH=/path/to/your/100_Obsidian
 ```
