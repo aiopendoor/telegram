@@ -17,7 +17,8 @@ load_dotenv(os.path.join(os.path.dirname(__file__), "../../00_Core/.env"))
 API_ID = int(os.getenv("TELEGRAM_API_ID"))
 API_HASH = os.getenv("TELEGRAM_API_HASH")
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-SESSION_STRING = os.getenv("TELEGRAM_SESSION_STRING")
+# 역할별 전용 세션 우선 적용 (없으면 기존 세션 사용)
+SESSION_STRING = os.getenv("TELEGRAM_SESSION_HISTORY") or os.getenv("TELEGRAM_SESSION_STRING")
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -71,11 +72,11 @@ async def send_split_message(bot_client, destination, text, **kwargs):
             await bot_client.send_message(destination, part, parse_mode=None, **temp_kwargs)
         await asyncio.sleep(0.5)
 
-async def process_message_for_bundle(message, chat_title, keywords, forward_media=True):
+async def process_message_for_bundle(message, chat_title, keywords, forward_media=False):
     """번들링을 위해 메시지를 가공하고 필터링 (전송은 하지 않음)"""
     msg_text = (message.text or "").strip()
     has_actual_file = message.media and not isinstance(message.media, MessageMediaWebPage)
-    allow_media = (message.date.year >= 2026) or forward_media
+    allow_media = forward_media  # 히스토리는 예외 없이 설정에 따름 (보통 False)
 
     # 미디어만 있고 텍스트가 없는데 미디어 전송이 비활성화된 경우 정보만 표시
     if not msg_text and has_actual_file and not allow_media:
@@ -111,7 +112,7 @@ async def main():
     BATCH_SIZE = history_settings.get("batch_size_per_channel", 50)
     EXCLUDE_YEARS = history_settings.get("exclude_years", [])
     GENERAL_SETTINGS = config.get("settings", {})
-    FORWARD_MEDIA = GENERAL_SETTINGS.get("forward_media", True)
+    FORWARD_MEDIA = GENERAL_SETTINGS.get("history_forward_media", False)
 
     start_date = None
     if START_DATE_STR:

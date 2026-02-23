@@ -5,6 +5,10 @@ on:
     - cron: '*/15 * * * *'  # 15분마다 실행
   workflow_dispatch:      # 수동 실행 버튼 추가
 
+concurrency:
+  group: telegram-sync
+  cancel-in-progress: true
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -27,7 +31,7 @@ jobs:
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
           TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_SESSION_STRING: ${{ secrets.TELEGRAM_SESSION_STRING }}
+          TELEGRAM_SESSION_REALTIME: ${{ secrets.TELEGRAM_SESSION_REALTIME }}
         working-directory: 10_Collector_Agents/10_Telegram
         run: python sync_batch.py
 

@@ -1,0 +1,2 @@
+여기에 발급받은 HISTORY 전용 세션 문자열을 붙여넣으세요.
+이 값은 GitHub Secrets의 `TELEGRAM_SESSION_HISTORY`에 등록하면 됩니다.

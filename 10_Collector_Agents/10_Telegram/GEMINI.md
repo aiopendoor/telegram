@@ -13,9 +13,16 @@ This file defines the global rules and behaviors for the GIIP Agent system. All 
 - 20260131 11:43:00: Started task to find and convert absolute paths to relative paths.
 - 20260131 12:24:00: Completed path normalization. Updated `.gemini\README.md` and `.agent\lib\common.js.backup`.
 - 20260222 17:27:00: Added strict rule for using relative paths at USER request.
+- 20260223 14:01:00: Mandated independent Telegram StringSessions for all projects and roles to prevent session conflicts.
 
 ## 🏗️ Core Conventions
 1. **Relative Paths Only**: 모든 프로젝트 파일 및 설정에서 절대 경로를 피하고 **상대 경로**를 사용해야 합니다. 이는 환경 이동성과 이식성을 보장하기 위함입니다.
+2. **Independent Telegram Sessions**: `AuthKeyDuplicatedError` 방지를 위해 **모든 프로젝트**에서 각 에이전트의 역할 및 실행 환경별로 **독립적인 StringSession**을 생성하여 사용해야 합니다. 단일 세션을 여러 환경이나 다른 프로젝트에서 공유하는 것을 엄격히 금지하며, 다음과 같이 구분하여 운영하는 것을 원칙으로 합니다:
+   - **History Session**: 과거 데이터 대량 수집용 세션
+   - **Real-time Session**: 15분 단위 자동 업데이트용 세션 (GitHub Actions 전용)
+   - **Refiner Session**: 수집된 데이터를 가공/정제하는 에이전트용 세션
+   - **Local Dev Session**: 로컬 개발 및 테스트용 세션
+   - **Project Specific Session**: 새로운 프로젝트나 목적이 다른 에이전트 추가 시 반드시 전용 세션 생성
 
 ## 🏗️ React & Next.js Best Practices
 Agents working on frontend code must follow the Vercel Engineering Best Practices defined in `.agent/rules/`.
