@@ -1,4 +1,4 @@
-name: Telegram Hourly Sync
+name: "[Real-time] Telegram Collector"
 
 on:
   schedule:

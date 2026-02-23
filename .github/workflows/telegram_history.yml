@@ -1,4 +1,4 @@
-name: Telegram History Sync (One-time)
+name: "[History] Telegram Collector"
 
 on:
   workflow_dispatch:  # 수동 실행 전용
